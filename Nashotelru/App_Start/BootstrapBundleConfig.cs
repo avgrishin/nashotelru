@@ -8,6 +8,7 @@ namespace Nashotelru.App_Start
 	{
 		public static void RegisterBundles()
 		{
+
 			// Add @Styles.Render("~/Content/bootstrap") in the <head/> of your _Layout.cshtml view
 			// For Bootstrap theme add @Styles.Render("~/Content/bootstrap-theme") in the <head/> of your _Layout.cshtml view
 			// Add @Scripts.Render("~/bundles/bootstrap") after jQuery in your _Layout.cshtml view
