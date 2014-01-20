@@ -1,0 +1,65 @@
+﻿@model Nashotelru.Areas.ru.Models.News
+
+@{
+  ViewBag.Title = "Удаление новости";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Вы уверены, что хотите удалить отзыв?</h3>
+<div>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Title)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Title)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Description)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Description)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Date)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Date)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Text)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Text)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.IsEnabled)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.IsEnabled)
+    </dd>
+
+  </dl>
+
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+      <input type="submit" value="Delete" class="btn btn-danger" /> |
+      @Html.ActionLink("Назад к списку", "Index")
+    </div>
+  }
+</div>
+<br />

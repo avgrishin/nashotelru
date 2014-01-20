@@ -1,0 +1,100 @@
+﻿@model Nashotelru.Areas.ru.Models.News
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+      @Html.AntiForgeryToken()
+
+      <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+          <div class="col-md-10" style="max-width:150px;">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = ViewData.ModelMetadata.Watermark })
+            @Html.ValidationMessageFor(model => model.Title)
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, 10, 0, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description)
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Text, 10, 0, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Text)
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.IsEnabled, new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.IsEnabled)
+            @Html.ValidationMessageFor(model => model.IsEnabled)
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-default" />
+          </div>
+        </div>
+      </div>
+    }
+
+    <div>
+      @Html.ActionLink("Назад к списку", "Index")
+    </div>
+  </div>
+</div>
+@section css
+{
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+}
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function ($) {
+      $.validator.addMethod('date',
+      function (value, element) {
+        if (this.optional(element)) {
+          return true;
+        }
+
+        var ok = true;
+        try {
+          $.datepicker.parseDate('dd.mm.yy', value);
+        }
+        catch (err) {
+          ok = false;
+        }
+        return ok;
+      });
+    });
+    $(document).ready(function () {
+      $(function () {
+        $("#Date").datepicker({ showOtherMonths: true, selectOtherMonths: true, numberOfMonths: 1, duration: "slow", dateFormat: "dd.mm.yy", firstDay: 1, monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], prevText: "Раньше", nextText: "Позже", dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"] });
+      });
+    });
+  </script>
+}

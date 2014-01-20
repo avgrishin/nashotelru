@@ -1,0 +1,122 @@
+﻿@{
+  ViewBag.Title = "Мероприятия";
+}
+<div class="row">
+  <div class="col-md-3">
+    <form class="panel panel-success" role="form" method="post">
+      <div class="panel-heading text-center">Запрос</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12 col-xs-4">
+            <label for="arrive_day">Дата мероприятия:</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <select id="arrive_day" name="arrive_day" class="col-md-4 form-control">
+              @for (int i = 1; i < 32; i++)
+              {
+                <option value="@i" @(i == DateTime.Today.Day ? " selected" : "")>@i</option>
+              }
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <select name="month2" id="month2" class="form-control">
+              @for (int i = 1; i <= 12; i++)
+              {
+                <option value="@i" @(i == DateTime.Today.Month ? " selected" : "")>@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames[i - 1]</option>
+              }
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <select name="arrive_year" id="arrive_year" class="form-control">
+              @for (int i = DateTime.Today.Year - 1; i <= DateTime.Today.Year + 1; i++)
+              {
+                <option value="@i" @(i == DateTime.Today.Year ? " selected" : "")>@(i - 2000)</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-xs-4">
+            <label for="arrive_day">Количество человек:</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-6">
+            <div class="input-group">
+              @*<label for="people_min">от</label>*@
+              <span class="input-group-addon">от</span>
+              <select name="people_min" id="people_min" class="form-control">
+                @for (int i = 1; i <= 50; i++)
+                {
+                  <option value="@i">@i</option>
+                }
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="input-group">
+              @*<label for="people_max">до</label>*@
+              <span class="input-group-addon">до</span>
+              <select name="people_max" id="people_max" class="form-control" @*style="display: inline-block; width: 70%"*@>
+                @for (int i = 1; i <= 50; i++)
+                {
+                  <option value="@i">@i</option>
+                }
+              </select>
+              </div>
+            </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-10">
+            <label for="hall">Выбрать зал:</label>
+            <select id="hall" name="hall" class="form-control">
+              <option value="yellow_hall">Желтый зал</option>
+              <option value="green_hall">Зеленый зал</option>
+              <option value="glass_hall">Стеклянный зал</option>
+              <option value="atrium_hall">Атриум</option>
+              <option value="any_hall">любой</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" name="submit" class="btn btn-default btn-block btn-success">Отправить</button>
+      </div>
+    </form>
+
+  </div>
+  <div class="col-md-6">
+    <h2>@ViewBag.Title</h2>
+    <p><a title="Конференц-помещения" target="_blank" data-lightbox="image-1" href="~/Content/uploads/2Glassroom.jpg" class="pull-left"><img alt="увеличить" style="margin:0 10px 10px 0" src="~/Content/uploads/1Glassroom.jpg" class="img-rounded" /></a> «НашОТЕЛЬ» рад предложить конференц помещения и оборудование для проведения мероприятий: конференции, семинара или деловых переговоров, а также ресторан La Botanique для проведения торжественного банкета.</p>
+    <p style="clear:left">Мы с радостью организуем для Вас деловое мероприятие. К Вашим услугам:<br /><ul><li>Желтый зал <small>(52 кв.м, вместимость 50 человек)</small></li><li>Зеленый зал <small>(36,2 кв.м, вместимость 36 человек)</small></li><li>Стеклянный зал <small>(23 кв.м, вместимость 12 человек)</small></li><li>Атриум (34 кв.м, вместимость 30 человек)</li></ul>Фойе второго и третьего этажей как нельзя лучше подходит для проведения кофе-брейков.<br /></p>
+    <p><a title="Конференц-помещения" target="_blank" data-lightbox="image-1" href="~/Content/uploads/2Foye.jpg" class="pull-right"><img alt="увеличить" style="margin-bottom: 10px; margin-right: 10px;" src="~/Content/uploads/1Foye.jpg" class="img-rounded" /></a></p>
+    <p>По Вашему запросу мы предоставим Вам необходимое для успешной работы оборудование, а также меню для обедов и ужинов участников конференции в нашей гостинице.</p>
+    <p>За более подробной информацией по проведению мероприятий, пожалуйста, обращайтесь по телефону <br />(812) 323-22-31 или <br />e-mail: <a href="mailto:info@nashotel.ru">info@nashotel.ru</a>.</p>
+    <div class="box-1">
+      <ul>
+        <li><a href="/events/conf/">Конференции</a></li>
+        <li><a href="/events/banq/">Банкеты</a></li>
+        <li><a href="/events/child/">Детские праздники</a></li>
+        <li><a href="/events/photo_sess1/">Фотосессия в НашемОТЕЛЕ</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+@section css
+{
+  <link href="http://cdn.jsdelivr.net/lightbox2/2.6/css/lightbox.css" type="text/css" rel="stylesheet" />
+  <style>
+    table tbody td, table tbody th {
+      text-align: center;
+    }
+
+      table tbody td:first-child, table tbody th:first-child {
+        text-align: left;
+        padding-left: 20px;
+      }
+  </style>
+}
+@section scripts
+{
+  <script src="http://cdn.jsdelivr.net/lightbox2/2.6/js/lightbox-2.6.min.js"></script>
+}

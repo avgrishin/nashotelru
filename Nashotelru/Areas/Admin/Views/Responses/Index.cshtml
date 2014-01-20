@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<Nashotelru.Areas.ru.Models.Response>
+@using PagedList.Mvc;
+@{
+  ViewBag.Title = "Администрирование отзывов";
+}
+<h2>@ViewBag.Title</h2>
+<hr />
+@foreach (var item in Model)
+{
+  <dl class="dl-horizontal no-response">
+    <dt>
+      @Html.DisplayNameFor(model => item.Date)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => item.Date)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.Name)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => item.Name)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.Mail)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => item.Mail)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.Text)
+    </dt>
+
+    <dd>
+      @Html.Raw(item.Text)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.Text2)
+    </dt>
+
+    <dd class="well">
+      @Html.Raw(item.Text2)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.IP)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => item.IP)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => item.IsVisible)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => item.IsVisible)
+    </dd>
+
+  </dl>
+  <p>
+    @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-success btn-xs" }) |
+    @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs" })
+  </p>
+  <hr />
+}
+<br />
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+    @Html.PagedListPager(Model, id => Url.Action("Responses", new { id }))

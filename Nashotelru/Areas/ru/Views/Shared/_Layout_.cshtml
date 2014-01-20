@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - Гостиница НашОТЕЛЬ</title>
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+  @RenderSection("css", required: false)
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+  <div class="body">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          @*@Html.ActionLink("НО", "Index", "Home", null, new { @class = "navbar-brand" })*@
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ", "Index", "Home")</li>
+            <li>@Html.ActionLink("НАШИ НОМЕРА", "Index", "Rooms")</li>
+            <li>@Html.ActionLink("МЕРОПРИЯТИЯ", "Contact", "Home")</li>
+            <li>@Html.ActionLink("КОНТАКТЫ", "Contact", "Home")</li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><small>LANGUAGE</small> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">RUSSIAN</a></li>
+                <li><a href="//en.nashotel.ru">ENGLISH</a></li>
+                <li><a href="//fr.nashotel.ru">FRENCH</a></li>
+              </ul>
+            </li>
+          </ul>
+          @Html.Partial("_LoginPartial")
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1 no-logo">
+          <a href="/ru"><img src="~/Content/img/logo.gif" /></a>
+        </div>
+        <div class="col-sm-5 no-address">
+          ТЕЛ. <span>+7 (812) 323-22-31</span><br />
+          ФАКС <span>+7 (812) 328-35-46</span><br />
+          <p class="no-addr">г. Санкт-Петербург, 11-я линия В.О., д. 50</p>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="container">
+      @RenderBody()
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>ОТЕЛЬ</h5>
+          <ul class="list-unstyled">
+            <li>@Html.ActionLink("Номера", "Index", "Rooms")</li>
+            <li>@Html.ActionLink("Ресторан", "Index", "Restaurant")</li>
+            <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
+            <li>@Html.ActionLink("Новости", "Index", "News")</li>
+            <li>@Html.ActionLink("Отзывы", "Index", "Response")</li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>СОБЫТИЯ</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Специальные предложения</a></li>
+            <li><a href="#">Мероприятия</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>УСЛУГИ</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Бронирование</a></li>
+            <li>@Html.ActionLink("Заказ трансфера", "Transfer", "Home")</li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>ИНФОРМАЦИЯ</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Визы</a></li>
+            <li><a href="#">Развод мостов</a></li>
+            <li><a href="#">Карьера</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; @DateTime.Now.Year - Н<i>аш</i>ОTEL</p>
+    </div>
+  </footer>
+
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
+  <script src="~/Scripts/jquery.ui.totop.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({
+        easingType: 'swing'
+      });
+    });
+  </script>
+</body>
+</html>

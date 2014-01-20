@@ -1,0 +1,131 @@
+﻿body {
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+.body {background-color:#fff;
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -180px;
+  /* Pad bottom by footer height */
+  padding: 0 0 180px;
+}
+a {color: #296432;}
+a:hover,a:focus{color:darkred}
+footer {padding-top:10px; border-top:1px solid #d6e9c6; background-color: #2c3133; color: rgb(122, 128, 131); padding-bottom: 10px;}
+footer a {color:#ddd;height:100%}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{color:#296432;}
+.dropdown-menu>li>a{color:#b2bc37}
+/*.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#296432}
+.navbar-default .navbar-nav>li>a{color:#b2bc37}
+.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{color:#296432}
+.navbar-default .navbar-nav>.open>a{color:#b2bc37}*/
+.form-control {padding: 3px 3px; height:28px;}
+.form-control:focus{border-color:#66e9af;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,233,175,0.6);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,233,175,0.6)}
+.panel-success>.panel-heading{color:#296432;background-color:#ebf7ca;border-color:#d6e9c6}
+form/*[name="prebron"]*/ .col-xs-3, form .col-xs-4, form .col-xs-6, form .col-sm-4 { padding-left:5px; padding-right:5px;}
+form/*[name="prebron"]*/ .col-xs-3:first-child, form .col-xs-4:first-child, form .col-xs-6:first-child, form .col-sm-4:first-child {padding-left: 15px;}
+form/*[name="prebron"]*/ .col-xs-3:last-child, form .col-xs-4:last-child, form .col-xs-6:last-child, form .col-sm-4:last-child {padding-right: 15px;}
+.pagination > .active > a,.pagination > .active > span,.pagination > .active > a:hover,.pagination > .active > span:hover,.pagination > .active > a:focus,.pagination > .active > span:focus {background-color: #47a447;border-color: #398439;}
+.gray {color:#999;}
+.no-rooms {margin-bottom:20px}
+.no-logo { 
+    text-align: left; 
+    /*margin-bottom: 10px;*/
+} 
+.no-address { 
+    text-align: right; 
+    color: #296432; 
+} 
+.no-address span { 
+    font-size: 1.4em; 
+} 
+.no-address p { 
+  color: #b2bc37;
+}
+
+@media screen and (max-width: 767px) { 
+    .no-logo { 
+        text-align: center; 
+    } 
+    .no-address { 
+        text-align: center;
+    } 
+}
+
+.no-response {margin-top:40px}
+.widTCH {display: inline-block;}
+
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+
+#toTop {
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	bottom:10px;
+	right:15px;
+	overflow:hidden;
+	width:51px;
+	height:51px;
+	border:none;
+	text-indent:100%;
+	background:url(img/ui_totop.png) no-repeat left top;
+}
+
+#toTopHover {
+	background:url(img/ui_totop.png) no-repeat left -51px;
+	width:51px;
+	height:51px;
+	display:block;
+	overflow:hidden;
+	float:left;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
+}
+
+#CaptchaInputText {width: 200px}
+/*.fader{background:url('/g/i/fader.5191403.png') 0 0 no-repeat transparent;width:30px;height:100%;position:absolute;right:0;top:0;}*/
+.input-group-addon {font-weight:bold}

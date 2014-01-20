@@ -1,0 +1,27 @@
+﻿@model CaptchaMvc.Models.DefaultBuildInfoModel
+<img id="@Model.ImageElementId" src="@Model.ImageUrl" />
+@Html.Hidden(Model.TokenElementId, Model.TokenValue)
+<br />
+@{
+  <a href="#@Model.InputElementId" id="idCaptchaRefresh" onclick="onCaptchaRefresh()" style="display:none;">@Model.RefreshButtonText</a>
+}
+
+<br />
+@Model.InputText
+<br />
+@if (Model.IsRequired)
+{
+  @Html.TextBox(Model.InputElementId, null, new Dictionary<string, object>
+                                                  {
+                                                      {"data-val", "true"},
+                                                      {"data-val-required", Model.RequiredMessage},
+                                                      {"class", "form-control"}
+                                                  })
+}
+else
+{
+  @Html.TextBox(Model.InputElementId, null, new Dictionary<string, object> { { "class", "form-control" } })
+}
+@Html.ValidationMessage(Model.InputElementId)
+
+

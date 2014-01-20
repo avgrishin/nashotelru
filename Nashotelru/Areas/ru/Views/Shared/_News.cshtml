@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Nashotelru.Areas.ru.Models.News>
+
+<div class="panel panel-success">
+  <div class="panel-heading text-center">Новости</div>
+  <div class="panel-body">
+    <ul class="list-unstyled">
+      @foreach (var item in Model)
+      {
+        <li><p><small>@item.Date.ToString("dd.MM.yyyy")</small><br />@Html.ActionLink(item.Title, "Det", "News", new { id = item.ID }, null)</p></li>
+      }
+    </ul>
+  </div>
+</div>
