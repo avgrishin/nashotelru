@@ -16,7 +16,12 @@ namespace Nashotelru.Areas.ru.Controllers
 
     public ActionResult Det(int? id)
     {
-      return View(db.News.FirstOrDefault(p => p.IsEnabled && p.ID == id));
+      var news = db.News.FirstOrDefault(p => p.IsEnabled && p.ID == id);
+      if (news == null)
+      {
+        return HttpNotFound();
+      }
+      return View(news);
     }
   }
 }

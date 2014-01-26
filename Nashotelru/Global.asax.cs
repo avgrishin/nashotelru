@@ -17,13 +17,21 @@ namespace Nashotelru
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
       BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-      //var captchaManager = CaptchaUtils.CaptchaManager;
-      //captchaManager.AddAreaRouteValue = false;
-      //var defaultCaptchaManager = (DefaultCaptchaManager)captchaManager;
-      //defaultCaptchaManager.ImageUrlFactory = (helper, pair) => ImageUrlFactory(defaultCaptchaManager, helper, pair);
-      //defaultCaptchaManager.RefreshUrlFactory = RefreshUrlFactory;
-
     }
+
+    //protected void Application_EndRequest()
+    //{
+    //  if (Context.Response.StatusCode == 404)
+    //  {
+    //    Response.Clear();
+    //    var rd = new RouteData();
+    //    //rd.DataTokens["area"] = "AreaName"; // In case controller is in another area
+    //    rd.Values.Add("controller", "Errors");
+    //    rd.Values.Add("action", "NotFound");
+
+    //    IController c = new Nashotelru.Controllers.ErrorsController();
+    //    c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));
+    //  }
+    //}
   }
 }

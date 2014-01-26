@@ -34,17 +34,18 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+html,body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  font-family: "Segoe UI","Segoe UI Light","Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+}
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
 }
+h1, h2, h3 {margin-top: 10px;}
 .body {background-color:#fff;
   min-height: 100%;
   height: auto;
-  /* Negative indent footer by its height */
   margin: 0 auto -180px;
-  /* Pad bottom by footer height */
   padding: 0 0 180px;
 }
 a {color: #296432;}
@@ -162,4 +163,4 @@ form/*[name="prebron"]*/ .col-xs-3:last-child, form .col-xs-4:last-child, form .
   background-color: #ebf7ca;
  background-image: -webkit-linear-gradient(top, color-stop(rgba(0, 0, 0, 0.0001) 0), color-stop(rgba(0, 0, 0, 0.5) 100%));
   background-image: linear-gradient(to top, #ebf7ca 0, #fff 50%, #ebf7ca 100%);
-}}
+}

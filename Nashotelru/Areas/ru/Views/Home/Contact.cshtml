@@ -108,6 +108,10 @@
   </div>
 </div>
 
+@section css
+{
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+}
 @section Scripts
 {
   <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
@@ -146,4 +150,7 @@
         .add(myPlacemark1);
     }
   </script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  @Html.Partial("_ReservationScript")
 }
+
