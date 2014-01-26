@@ -131,6 +131,37 @@ namespace Nashotelru.Controllers
       return RedirectToAction("Manage", new { Message = message });
     }
 
+    public async Task<ActionResult> Params(string Message)
+    {
+      ViewBag.StatusMessage = Message;
+      var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+      var model = new ParamsUserViewModel();
+      if (currentUser.NoUserInfo != null)
+      {
+        model.EMail = currentUser.NoUserInfo.EMail;
+        model.FirstName = currentUser.NoUserInfo.FirstName;
+        model.LastName = currentUser.NoUserInfo.LastName;
+      }
+      return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> Params(ParamsUserViewModel model)
+    {
+      if (ModelState.IsValid)
+      {
+        var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        if (currentUser.NoUserInfo == null) currentUser.NoUserInfo = new NoUserInfo { IsLocked = false };
+        currentUser.NoUserInfo.EMail = model.EMail;
+        currentUser.NoUserInfo.FirstName = model.FirstName;
+        currentUser.NoUserInfo.LastName = model.LastName;
+        UserManager.Update(currentUser);
+        return RedirectToAction("Params", new { Message = "Профиль успешно обновлен." });
+      }
+      return View(model);
+    }
     //
     // GET: /Account/Manage
     public ActionResult Manage(ManageMessageId? message)
@@ -162,15 +193,6 @@ namespace Nashotelru.Controllers
           IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
           if (result.Succeeded)
           {
-            //var currentUserId = User.Identity.GetUserId();
-            
-            //var manager = new UserManager<NoUserInfo>(new UserStore<NoUserInfo>(new ApplicationDbContext()));
-            var currentUser = UserManager.FindById(User.Identity.GetUserId());
-            if (currentUser.NoUserInfo == null) currentUser.NoUserInfo = new NoUserInfo();
-            currentUser.NoUserInfo.EMail = model.EMail;
-            currentUser.NoUserInfo.FirstName = model.FirstName;
-            currentUser.NoUserInfo.LastName = model.LastName;
-            UserManager.Update(currentUser);
             return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
           }
           else

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace Nashotelru.Models
 {
@@ -13,12 +14,14 @@ namespace Nashotelru.Models
     public class NoUserInfo
     {
       public int Id { get; set; }
+      
       [MaxLength(100)]
       public string FirstName { get; set; }
       [MaxLength(100)]
       public string LastName { get; set; }
 
       [MaxLength(200)]
+      [DataType(DataType.EmailAddress)]
       public string EMail { get; set; }
       public bool IsLocked { get; set; }
     }
@@ -29,6 +32,6 @@ namespace Nashotelru.Models
             : base("DefaultConnection")
         {
         }
-        public System.Data.Entity.DbSet<NoUserInfo> NoUserInfo { get; set; }
+        public DbSet<NoUserInfo> NoUserInfo { get; set; }
     }
 }

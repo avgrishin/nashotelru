@@ -94,7 +94,7 @@ form/*[name="prebron"]*/ .col-xs-3:last-child, form .col-xs-4:last-child, form .
 .no-response {margin-top:40px}
 .widTCH {display: inline-block;}
 
-@-ms-viewport       { width: device-width; }
+/*@-ms-viewport       { width: device-width; }*/
 @-o-viewport        { width: device-width; }
 
 #toTop {

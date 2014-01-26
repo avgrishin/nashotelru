@@ -207,6 +207,7 @@
     <Compile Include="Areas\ru\Controllers\ResponseController.cs" />
     <Compile Include="Areas\ru\Controllers\RestaurantController.cs" />
     <Compile Include="Areas\ru\Controllers\RoomsController.cs" />
+    <Compile Include="Areas\ru\Controllers\SettingsController.cs" />
     <Compile Include="Areas\ru\Models\Models.cs" />
     <Compile Include="Areas\ru\ruAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -215,11 +216,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201401231839450_init.cs" />
-    <Compile Include="Migrations\201401231839450_init.Designer.cs">
-      <DependentUpon>201401231839450_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -292,7 +288,9 @@
     <Content Include="Areas\ru\Views\Default1\Index.cshtml" />
     <Content Include="Areas\ru\Views\Response\Index.cshtml" />
     <Content Include="Areas\ru\Views\Response\Created.cshtml" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Responses\Delete.cshtml" />
@@ -307,8 +305,11 @@
     <Content Include="Areas\ru\Views\Shared\DateTime.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
+    <Content Include="Areas\ru\Views\Settings\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <None Include="Properties\PublishProfiles\Nashotelru.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ie10wp.js" />
@@ -352,6 +353,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Account\Params.cshtml" />
+    <Content Include="Views\Account\_LMenu.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,11 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201401231839450_init.resx">
-      <DependentUpon>201401231839450_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

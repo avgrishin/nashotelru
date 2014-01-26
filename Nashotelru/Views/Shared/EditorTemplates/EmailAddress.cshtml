@@ -1,0 +1,4 @@
+﻿@{
+  ViewData["placeholder"] = ViewData.ModelMetadata.Watermark;
+}
+@Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @placeholder = ViewData.ModelMetadata.Watermark, type = "email", @style = "width:50%", @class = "form-control" })

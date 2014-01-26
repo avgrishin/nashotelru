@@ -10,6 +10,21 @@ namespace Nashotelru.Models
     public string UserName { get; set; }
   }
 
+  public class ParamsUserViewModel
+  {
+    [StringLength(200)]
+    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
+    public string EMail { get; set; }
+
+    [StringLength(100)]
+    [Display(Name = "Имя", Prompt = "Введите Ваше Имя")]
+    public string FirstName { get; set; }
+
+    [StringLength(100)]
+    [Display(Name = "Фамилия", Prompt = "Введите Вашу Фамилию")]
+    public string LastName { get; set; }
+  }
+
   public class ManageUserViewModel
   {
     [Required]
@@ -27,20 +42,6 @@ namespace Nashotelru.Models
     [Display(Name = "Подтвердите новый пароль")]
     [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
-
-    [StringLength(200)]
-    [Display(Name = "EMail")]
-
-    public string EMail { get; set; }
-    
-    [MaxLength(100)]
-    [Display(Name = "Имя")]
-    public string FirstName { get; set; }
-
-    [MaxLength(100)]
-    [Display(Name = "Фамилия")]
-    public string LastName { get; set; }
-
   }
 
   public class LoginViewModel
