@@ -42,13 +42,14 @@ namespace Nashotelru.Areas.ru.Models
     [Required]
     [MaxLength(200)]
     [StringLength(200)]
-    [Display(Name = "Ваше имя", Prompt = "Ваше имя")]
+    [Display(Name = "Ваше имя", Prompt = "Введите Ваше имя")]
     public string Name { get; set; }
 
     [Required]
     [MaxLength(200)]
     [StringLength(200)]
-    [Display(Name = "Координаты для обратной связи")]
+    [DataType(DataType.EmailAddress)]
+    [Display(Name = "Координаты для обратной связи", Prompt = "Введите Ваш EMail")]
     public string Mail { get; set; }
 
     [Required]

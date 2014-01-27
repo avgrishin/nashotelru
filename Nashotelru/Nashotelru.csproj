@@ -306,6 +306,9 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
     <Content Include="Areas\ru\Views\Settings\Index.cshtml" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.validate.messages_ru.js" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <None Include="Properties\PublishProfiles\Nashotelru.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -356,6 +359,7 @@
     <Content Include="Views\Account\Params.cshtml" />
     <Content Include="Views\Account\_LMenu.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

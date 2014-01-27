@@ -13,6 +13,7 @@ namespace Nashotelru.Models
   public class ParamsUserViewModel
   {
     [StringLength(200)]
+    [DataType(DataType.EmailAddress)]
     [Display(Name = "Email", Prompt = "Введите Ваш Email")]
     public string EMail { get; set; }
 
