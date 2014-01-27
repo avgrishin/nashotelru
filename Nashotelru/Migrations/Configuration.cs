@@ -10,6 +10,7 @@ namespace Nashotelru.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "Nashotelru.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Nashotelru.Models.ApplicationDbContext context)
