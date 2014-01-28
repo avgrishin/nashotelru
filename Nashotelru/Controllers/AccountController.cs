@@ -18,6 +18,8 @@ namespace Nashotelru.Controllers
     public AccountController()
       : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
     {
+      (UserManager.UserValidator as UserValidator<ApplicationUser>).AllowOnlyAlphanumericUserNames = false;
+
       var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
       if (!roleManager.RoleExists("admin"))
@@ -96,6 +98,7 @@ namespace Nashotelru.Controllers
       {
         var user = new ApplicationUser() { UserName = model.UserName };
         user.NoUserInfo = new NoUserInfo { EMail = model.EMail, IsLocked = false };
+
         var result = await UserManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {

@@ -21,7 +21,7 @@ namespace Nashotelru.Models
       public string LastName { get; set; }
 
       [MaxLength(200)]
-      [DataType(DataType.EmailAddress)]
+      //[DataType(DataType.EmailAddress)]
       public string EMail { get; set; }
       public bool IsLocked { get; set; }
     }

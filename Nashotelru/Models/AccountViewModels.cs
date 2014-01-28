@@ -30,56 +30,57 @@ namespace Nashotelru.Models
   {
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Текущий пароль")]
+    [Display(Name = "Старый пароль", Prompt = "Старый пароль")]
     public string OldPassword { get; set; }
 
     [Required]
-    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+    [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов", MinimumLength = 6)]
     [DataType(DataType.Password)]
-    [Display(Name = "Новый парроль")]
+    [Display(Name = "Новый пароль", Prompt = "Новый пароль")]
     public string NewPassword { get; set; }
 
     [DataType(DataType.Password)]
-    [Display(Name = "Подтвердите новый пароль")]
-    [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+    [Display(Name = "Подтверждение", Prompt = "Подтверждение")]
+    [Compare("NewPassword", ErrorMessage = "Введенные пароли не совпадают.")]
     public string ConfirmPassword { get; set; }
   }
 
   public class LoginViewModel
   {
     [Required]
-    [Display(Name = "User name")]
+    [Display(Name = "Логин", Prompt = "Логин")]
     public string UserName { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Password")]
+    [Display(Name = "Пароль", Prompt = "Пароль")]
     public string Password { get; set; }
 
-    [Display(Name = "Remember me?")]
+    [Display(Name = "Помнить меня?")]
     public bool RememberMe { get; set; }
   }
 
   public class RegisterViewModel
   {
     [Required]
-    [Display(Name = "User name")]
+    [Display(Name = "Логин", Prompt = "Логин")]
     public string UserName { get; set; }
 
     [Required]
-    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+    [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов.", MinimumLength = 6)]
     [DataType(DataType.Password)]
-    [Display(Name = "Password")]
+    [Display(Name = "Пароль", Prompt = "Пароль")]
     public string Password { get; set; }
 
     [DataType(DataType.Password)]
-    [Display(Name = "Confirm password")]
-    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    [Display(Name = "Подтверждение", Prompt = "Подтверждение")]
+    [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
     public string ConfirmPassword { get; set; }
 
     [MaxLength(200)]
     [StringLength(200)]
-    [Display(Name = "EMail")]
+    [Display(Name = "Email", Prompt = "Email")]
+    [DataType(DataType.EmailAddress)]
     public string EMail { get; set; }
 
   }
