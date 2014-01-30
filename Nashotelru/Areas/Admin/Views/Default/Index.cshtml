@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Nashotelru.Models.ApplicationUser>
+@{
   ViewBag.Title = "Администрирование";
 }
 
@@ -7,5 +8,15 @@
     <li class="list-group-item">@Html.ActionLink("Новости", "Index", "News")</li>
     <li class="list-group-item">@Html.ActionLink("Отзывы", "Index", "Responses")</li>
   </ul>
+@foreach (var item in Model)
+{
+  <dl class="dl-horizontal no-response">
+    <dt>
+      @Html.DisplayNameFor(model => item.UserName)
+    </dt>
 
-
+    <dd>
+      @Html.DisplayFor(model => item.UserName)
+    </dd>
+  </dl>
+}

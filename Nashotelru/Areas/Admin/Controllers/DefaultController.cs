@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using Nashotelru.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Nashotelru.Areas.Admin.Controllers
 {
@@ -7,7 +9,8 @@ namespace Nashotelru.Areas.Admin.Controllers
   {
     public ActionResult Index()
     {
-      return View();
+      var db = new ApplicationDbContext();
+      return View(db.Users.ToList());
     }
   }
 }

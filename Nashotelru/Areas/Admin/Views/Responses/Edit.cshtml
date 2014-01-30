@@ -25,7 +25,7 @@
         <div class="form-group">
           @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-4" })
           <div class="col-md-8">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = ViewData.ModelMetadata.Watermark })
+            @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
           </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
           @Html.LabelFor(model => model.Mail, new { @class = "control-label col-md-4" })
           <div class="col-md-8">
-            @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
+            @Html.EditorFor(model => model.Mail)
             @Html.ValidationMessageFor(model => model.Mail)
           </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
           @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-4" })
           <div class="col-md-8">
-            @Html.TextAreaFor(model => model.Text, 10, 0, new { @class = "form-control" })
+            @Html.EditorFor(model => model.Text)
             @Html.ValidationMessageFor(model => model.Text)
           </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
           @Html.LabelFor(model => model.Text2, new { @class = "control-label col-md-4" })
           <div class="col-md-8">
-            @Html.TextAreaFor(model => model.Text2, 10, 0, new { @class = "form-control" })
+            @Html.EditorFor(model => model.Text2)
             @Html.ValidationMessageFor(model => model.Text2)
           </div>
         </div>

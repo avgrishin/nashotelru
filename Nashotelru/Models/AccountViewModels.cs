@@ -17,6 +17,10 @@ namespace Nashotelru.Models
     [Display(Name = "Email", Prompt = "Введите Ваш Email")]
     public string EMail { get; set; }
 
+    [StringLength(20)]
+    [Display(Name = "Телефон", Prompt = "Введите Ваш Телефон")]
+    public string Phone { get; set; }
+
     [StringLength(100)]
     [Display(Name = "Имя", Prompt = "Введите Ваше Имя")]
     public string FirstName { get; set; }
