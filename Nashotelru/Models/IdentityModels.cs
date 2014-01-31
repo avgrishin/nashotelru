@@ -24,6 +24,10 @@ namespace Nashotelru.Models
       //[DataType(DataType.EmailAddress)]
       public string EMail { get; set; }
       public bool IsLocked { get; set; }
+
+      public string ConfirmationToken { get; set; }
+      public bool IsConfirmed { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

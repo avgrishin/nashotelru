@@ -164,3 +164,15 @@ form/*[name="prebron"]*/ .col-xs-3:last-child, form .col-xs-4:last-child, form .
  background-image: -webkit-linear-gradient(top, color-stop(rgba(0, 0, 0, 0.0001) 0), color-stop(rgba(0, 0, 0, 0.5) 100%));
   background-image: linear-gradient(to top, #ebf7ca 0, #fff 50%, #ebf7ca 100%);
 }
+
+a.list-group-item.active,
+a.list-group-item.active:hover,
+a.list-group-item.active:focus {
+  z-index: 2;
+  color: #555555;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  font-weight:600;
+  /*border-color: #398439;*/
+  border-right: 5px solid #398439;
+}

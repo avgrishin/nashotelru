@@ -1,22 +1,30 @@
 ﻿@model List<Nashotelru.Models.ApplicationUser>
+@using System.Linq
 @{
   ViewBag.Title = "Администрирование";
 }
+<div class="row">
+  <div class="col-md-3">
+    <ul class="list-group">
+      <li class="list-group-item">@Html.ActionLink("Новости", "Index", "News")</li>
+      <li class="list-group-item">@Html.ActionLink("Отзывы", "Index", "Responses")</li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    @foreach (var item in Model)
+    {
+      <dl class="dl-horizontal no-response">
+        <dt>
+          @Html.DisplayNameFor(model => item.UserName)
+        </dt>
+        <dd>
+          @Html.DisplayFor(model => item.UserName)
+          <br />Роли: @Html.Raw(string.Join(",", item.Roles.Select(s => s.Role.Name)))
+        </dd>
+      </dl>
 
-<h2>@ViewBag.Title</h2>
-  <ul class="list-group">
-    <li class="list-group-item">@Html.ActionLink("Новости", "Index", "News")</li>
-    <li class="list-group-item">@Html.ActionLink("Отзывы", "Index", "Responses")</li>
-  </ul>
-@foreach (var item in Model)
-{
-  <dl class="dl-horizontal no-response">
-    <dt>
-      @Html.DisplayNameFor(model => item.UserName)
-    </dt>
-
-    <dd>
-      @Html.DisplayFor(model => item.UserName)
-    </dd>
-  </dl>
-}
+    }
+  </div>
+</div>

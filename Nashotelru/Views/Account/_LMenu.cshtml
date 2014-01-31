@@ -1,7 +1,7 @@
 ﻿<div class="col-md-3">
-  <ul class="list-group">
-    <li class="list-group-item">@Html.ActionLink("Параметры", "Params", "Account", new { area = "" }, null)</li>
-    <li class="list-group-item">@Html.ActionLink("Смена пароля", "Manage", "Account", new { area = "" }, null)</li>
-  </ul>
+  <div class="list-group">
+    @Html.ActionLink("Личные данные", "Params", "Account", new { area = "" }, new { @class = string.Format("list-group-item{0}", ViewBag.Title == "Личные данные" ? " active" : "") })
+    @Html.ActionLink("Смена пароля", "Manage", "Account", new { area = "" }, new { @class = string.Format("list-group-item{0}", ViewBag.Title == "Смена пароля" ? " active" : "") })
+  </div>
 </div>
 

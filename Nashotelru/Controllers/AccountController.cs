@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Nashotelru.Models;
+using System.Data.Entity;
 
 namespace Nashotelru.Controllers
 {
@@ -97,13 +98,15 @@ namespace Nashotelru.Controllers
       if (ModelState.IsValid)
       {
         var user = new ApplicationUser() { UserName = model.UserName };
-        user.NoUserInfo = new NoUserInfo { EMail = model.EMail, IsLocked = false };
+        user.NoUserInfo = new NoUserInfo { EMail = model.EMail, IsLocked = false, ConfirmationToken = Nashotelru.Helpers.ShortGuid.NewGuid(), IsConfirmed = false };
 
         var result = await UserManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
           await SignInAsync(user, isPersistent: false);
-          return RedirectToAction("Index", "Home");
+          //SendEmailConfirmation(model.Email, model.UserName, confirmationToken);
+          return RedirectToAction("Register2", "Account");
+          //return RedirectToAction("Index", "Home");
         }
         else
         {
@@ -113,6 +116,30 @@ namespace Nashotelru.Controllers
 
       // If we got this far, something failed, redisplay form
       return View(model);
+    }
+
+    [AllowAnonymous]
+    public ActionResult RegisterConfirmation(string Id)
+    {
+      ApplicationDbContext context = new ApplicationDbContext();
+      ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ConfirmationToken == Id).;
+      if (user != null)
+      {
+        user.IsConfirmed = true;
+        DbSet<ApplicationUser> dbSet = context.Set<ApplicationUser>();
+        dbSet.Attach(user);
+        context.Entry(user).State = EntityState.Modified;
+        context.SaveChanges();
+
+        return true;
+      }
+      return false;
+
+      if (ConfirmAccount(Id))
+      {
+        return RedirectToAction("ConfirmationSuccess");
+      }
+      return RedirectToAction("ConfirmationFailure");
     }
 
     //

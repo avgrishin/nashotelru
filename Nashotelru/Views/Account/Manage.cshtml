@@ -1,12 +1,12 @@
 ﻿@using Nashotelru.Models;
 @using Microsoft.AspNet.Identity;
 @{
-  ViewBag.Title = "Manage Account";
+  ViewBag.Title = "Смена пароля";
 }
 <div class="row">
   @Html.Partial("_LMenu")
   <div class="col-md-9">
-    <h2>@ViewBag.Title.</h2>
+    <h2>@ViewBag.Title</h2>
     <p class="text-success">@ViewBag.StatusMessage</p>
     @if (ViewBag.HasLocalPassword)
     {
