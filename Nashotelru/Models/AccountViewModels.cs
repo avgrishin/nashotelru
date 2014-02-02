@@ -81,11 +81,44 @@ namespace Nashotelru.Models
     [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
     public string ConfirmPassword { get; set; }
 
-    [MaxLength(200)]
+    [Required]
     [StringLength(200)]
-    [Display(Name = "Email", Prompt = "Email")]
+    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
     [DataType(DataType.EmailAddress)]
     public string EMail { get; set; }
-
   }
+
+  public class RemindViewModel
+  {
+    [Required]
+    [Display(Name = "Логин", Prompt = "Логин")]
+    public string UserName { get; set; }
+
+    [Required]
+    [StringLength(200)]
+    [Display(Name = "или Email", Prompt = "Введите Ваш Email")]
+    [DataType(DataType.EmailAddress)]
+    public string EMail { get; set; }
+  }
+
+  public class RemindConfirmViewModel
+  {
+    [Required]
+    [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов.", MinimumLength = 6)]
+    [DataType(DataType.Password)]
+    [Display(Name = "Новый пароль", Prompt = "Новый пароль")]
+    public string Password { get; set; }
+
+    [DataType(DataType.Password)]
+    [Display(Name = "Подтверждение", Prompt = "Подтверждение пароля")]
+    [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
+    public string ConfirmPassword { get; set; }
+
+    [Required]
+    [StringLength(200)]
+    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
+    [DataType(DataType.EmailAddress)]
+    public string ReminderToken { get; set; }
+  }
+
 }

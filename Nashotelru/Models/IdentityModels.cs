@@ -21,13 +21,15 @@ namespace Nashotelru.Models
       public string LastName { get; set; }
 
       [MaxLength(200)]
-      //[DataType(DataType.EmailAddress)]
       public string EMail { get; set; }
       public bool IsLocked { get; set; }
 
+      [MaxLength(50)]
       public string ConfirmationToken { get; set; }
       public bool IsConfirmed { get; set; }
-
+      [MaxLength(50)]
+      public string ReminderToken { get; set; }
+      public DateTime ReminderDT { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

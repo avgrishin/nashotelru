@@ -30,7 +30,8 @@ namespace Nashotelru.Areas.ru.Controllers
     }
 
     [CaptchaVerify("Captcha result is not valid.")]
-    [Recaptcha.RecaptchaControlMvc.CaptchaValidator]
+    //[Recaptcha.RecaptchaControlMvc.CaptchaValidator]
+    [ValidateAntiForgeryToken]
     [HttpPost]
     public async Task<ActionResult> Create([Bind(Include = "Name,Mail,Text")]Response response/*, bool captchaValid*/)
     {

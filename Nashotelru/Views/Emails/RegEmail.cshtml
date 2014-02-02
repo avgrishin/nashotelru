@@ -1,0 +1,24 @@
+﻿To: @Html.Raw(ViewBag.To)
+From: @Html.Raw(ViewBag.From)
+Subject: НашОТЕЛЬ: подтверждение EMail
+Content-Type: text/html; charset=utf-8
+
+<html>
+<body>
+  ==========================================================<br />
+  === ЭТО АВТОМАТИЧЕСКОЕ СООБЩЕНИЕ, НЕ ОТВЕЧАЙТЕ НА НЕГО ===<br />
+  ==========================================================<br />
+  <br />
+  Приветствуем Вас!<br />
+  <br />
+  При регистрации учетной записи @ViewBag.UserName был указан Ваш email.<br />
+  <br />
+  Для подтверждения регистрации необходимо перейти по ссылке <a href="http://@(System.Web.HttpContext.Current.Request.ServerVariables["HTTP_HOST"])/Account/RegisterConfirmation/@(ViewBag.ConfirmationToken)">http://@(System.Web.HttpContext.Current.Request.ServerVariables["HTTP_HOST"])/Account/RegisterConfirmation/@(ViewBag.ConfirmationToken)</a><br />
+  <br />
+  Если Вы не регистрировались на nashotel.ru и считаете это письмо ошибкой, просто игнорируйте данное сообщение.<br />
+  <br />
+  С уважением,<br />
+  администрация НашОТЕЛЬ.<br />
+
+</body>
+</html>

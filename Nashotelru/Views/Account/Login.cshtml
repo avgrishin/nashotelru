@@ -1,11 +1,8 @@
 ﻿@model Nashotelru.Models.LoginViewModel
-
 @{
     ViewBag.Title = "Вход";
 }
-
 <div class="row">
-  
     <div class="col-md-6 col-md-offset-2">
       <section id="loginForm">
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -41,6 +38,9 @@
               <input type="submit" value="Log in" class="btn btn-default" />
             </div>
           </div>
+          <p>
+            @Html.ActionLink("Забыли пароль?", "Remind")
+          </p>
           <p>
             @Html.ActionLink("Зарегистрироваться", "Register") если нет логина для входа.
           </p>
