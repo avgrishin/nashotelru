@@ -96,7 +96,7 @@ namespace Nashotelru.Models
 
     [Required]
     [StringLength(200)]
-    [Display(Name = "или Email", Prompt = "Введите Ваш Email")]
+    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
     [DataType(DataType.EmailAddress)]
     public string EMail { get; set; }
   }

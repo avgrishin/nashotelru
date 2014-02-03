@@ -96,8 +96,8 @@ namespace Nashotelru.Controllers
       if (ModelState.IsValid)
       {
         ApplicationDbContext context = new ApplicationDbContext();
-        ApplicationUser user = context.Users.SingleOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.EMail);
-        if (user != null && !user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
+        ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.EMail);
+        if (user != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
         {
           user.NoUserInfo.ReminderToken = Nashotelru.Helpers.ShortGuid.NewGuid();
           user.NoUserInfo.ReminderDT = DateTime.Now;
@@ -112,7 +112,7 @@ namespace Nashotelru.Controllers
           email.UserName = user.UserName;
           email.ReminderToken = user.NoUserInfo.ReminderToken;
           await email.SendAsync();
-          RedirectToAction("RemindSent");
+          return RedirectToAction("RemindSent");
         }
         else
         {
@@ -124,11 +124,17 @@ namespace Nashotelru.Controllers
     }
 
     [AllowAnonymous]
+    public ActionResult RemindSent()
+    {
+      return View();
+    }
+
+    [AllowAnonymous]
     public ActionResult RemindConfirm(string Id)
     {
       ApplicationDbContext context = new ApplicationDbContext();
-      ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ReminderToken == Id);
-      if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.AddDays(2) > DateTime.Now)
+      ApplicationUser user = context.Users.FirstOrDefault(u => u.NoUserInfo.ReminderToken == Id);
+      if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
       {
         return View();
       }
@@ -144,7 +150,7 @@ namespace Nashotelru.Controllers
       {
         ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ReminderToken == model.ReminderToken);
-        if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.AddDays(2) > DateTime.Now)
+        if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
         {
           await UserManager.RemovePasswordAsync(user.Id);
           var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
@@ -227,6 +233,12 @@ namespace Nashotelru.Controllers
         return RedirectToAction("Params", new { Message = "Поздравляем! Вы успешно завершили регистрацию." });
       }
       return RedirectToAction("ConfirmationFailure");
+    }
+
+    [AllowAnonymous]
+    public ActionResult ConfirmationFailure()
+    {
+      return View();
     }
 
     //

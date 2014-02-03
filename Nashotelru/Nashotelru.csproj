@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201401311307514_emailconfirm.Designer.cs">
       <DependentUpon>201401311307514_emailconfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402031807108_remind.cs" />
+    <Compile Include="Migrations\201402031807108_remind.Designer.cs">
+      <DependentUpon>201402031807108_remind.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -401,6 +405,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201401311307514_emailconfirm.resx">
       <DependentUpon>201401311307514_emailconfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031807108_remind.resx">
+      <DependentUpon>201402031807108_remind.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

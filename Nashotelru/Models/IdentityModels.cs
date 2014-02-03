@@ -29,7 +29,7 @@ namespace Nashotelru.Models
       public bool IsConfirmed { get; set; }
       [MaxLength(50)]
       public string ReminderToken { get; set; }
-      public DateTime ReminderDT { get; set; }
+      public DateTime? ReminderDT { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
