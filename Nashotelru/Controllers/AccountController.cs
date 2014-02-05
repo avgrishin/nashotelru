@@ -74,7 +74,7 @@ namespace Nashotelru.Controllers
         }
         else
         {
-          ModelState.AddModelError("", user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации. Проверьте правильность указания Логина и Пароля.");
+          ModelState.AddModelError("", user == null ? "Ошибка авторизации. Проверьте правильность указания Логина и Пароля." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации.");
         }
       }
       // If we got this far, something failed, redisplay form
@@ -136,7 +136,7 @@ namespace Nashotelru.Controllers
       ApplicationUser user = context.Users.FirstOrDefault(u => u.NoUserInfo.ReminderToken == Id);
       if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
       {
-        return View();
+        return View(new RemindConfirmViewModel { ReminderToken = Id });
       }
       return View("RemindFailure");
     }
@@ -154,9 +154,10 @@ namespace Nashotelru.Controllers
         {
           await UserManager.RemovePasswordAsync(user.Id);
           var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
+          await SignInAsync(user, isPersistent: false);
           if (result.Succeeded)
           {
-            return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+            return RedirectToAction("Params", new { Message = "Пароль успешно изменен." });
           }
           else
           {

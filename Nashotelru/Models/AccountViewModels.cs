@@ -115,9 +115,6 @@ namespace Nashotelru.Models
     public string ConfirmPassword { get; set; }
 
     [Required]
-    [StringLength(200)]
-    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
-    [DataType(DataType.EmailAddress)]
     public string ReminderToken { get; set; }
   }
 
