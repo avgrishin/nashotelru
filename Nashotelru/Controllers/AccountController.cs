@@ -96,7 +96,7 @@ namespace Nashotelru.Controllers
       if (ModelState.IsValid)
       {
         ApplicationDbContext context = new ApplicationDbContext();
-        ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.EMail);
+        ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.UserName);
         if (user != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
         {
           user.NoUserInfo.ReminderToken = Nashotelru.Helpers.ShortGuid.NewGuid();
@@ -116,7 +116,7 @@ namespace Nashotelru.Controllers
         }
         else
         {
-          ModelState.AddModelError("", user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации. Проверьте правильность указания Логина и Email.");
+          ModelState.AddModelError("", user == null ? "Ошибка. Проверьте правильность указания Логина и Email." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации. Проверьте правильность указания Логина и Email.");
         }
       }
       // If we got this far, something failed, redisplay form

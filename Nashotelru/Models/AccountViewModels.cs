@@ -91,14 +91,8 @@ namespace Nashotelru.Models
   public class RemindViewModel
   {
     [Required]
-    [Display(Name = "Логин", Prompt = "Логин")]
+    [Display(Name = "Логин или Email", Prompt = "Введите Ваш Email или Логин")]
     public string UserName { get; set; }
-
-    [Required]
-    [StringLength(200)]
-    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
-    [DataType(DataType.EmailAddress)]
-    public string EMail { get; set; }
   }
 
   public class RemindConfirmViewModel

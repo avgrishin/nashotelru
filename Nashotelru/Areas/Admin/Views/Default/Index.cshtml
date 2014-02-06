@@ -21,6 +21,7 @@
         </dt>
         <dd>
           @Html.DisplayFor(model => item.UserName)
+          <br />@Html.DisplayFor(model => item.NoUserInfo.EMail)
           <br />Роли: @Html.Raw(string.Join(",", item.Roles.Select(s => s.Role.Name)))
         </dd>
       </dl>
