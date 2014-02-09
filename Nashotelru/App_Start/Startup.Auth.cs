@@ -20,17 +20,17 @@ namespace Nashotelru
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "000000004C10FF0D",
+                clientSecret: "JBRs2Rpqw8vJUP30a68hCAlKZkTYcAgs");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "282540021895058",
-            //   appSecret: "303aca413053259133fa6d75f3dc4b84");
+            app.UseFacebookAuthentication(
+               appId: "282540021895058",
+               appSecret: "303aca413053259133fa6d75f3dc4b84");
 
             app.UseGoogleAuthentication();
         }
