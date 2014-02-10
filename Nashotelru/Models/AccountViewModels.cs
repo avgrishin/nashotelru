@@ -52,22 +52,22 @@ namespace Nashotelru.Models
   public class LoginViewModel
   {
     [Required]
-    [Display(Name = "Логин", Prompt = "Логин")]
+    [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
     public string UserName { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Пароль", Prompt = "Пароль")]
+    [Display(ResourceType = typeof(Resources.Account.Account), Name = "PasswordLabel", Prompt = "PasswordLabel")]
     public string Password { get; set; }
 
-    [Display(Name = "Помнить меня?")]
+    [Display(ResourceType = typeof(Resources.Account.Account), Name = "RememberMeLabel")]
     public bool RememberMe { get; set; }
   }
 
   public class RegisterViewModel
   {
     [Required]
-    [Display(Name = "Логин", Prompt = "Логин")]
+    [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
     public string UserName { get; set; }
 
     [Required]
