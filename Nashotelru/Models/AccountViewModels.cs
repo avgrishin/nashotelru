@@ -51,7 +51,7 @@ namespace Nashotelru.Models
 
   public class LoginViewModel
   {
-    [Required]
+    [Required(ErrorMessageResourceName = "YouMustSpecifyUserName", ErrorMessageResourceType = typeof(Resources.Account.Account))]
     [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
     public string UserName { get; set; }
 

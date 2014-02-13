@@ -95,5 +95,14 @@ namespace Nashotelru.Resources.Account {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify UserName.
+        /// </summary>
+        public static string YouMustSpecifyUserName {
+            get {
+                return ResourceManager.GetString("YouMustSpecifyUserName", resourceCulture);
+            }
+        }
     }
 }

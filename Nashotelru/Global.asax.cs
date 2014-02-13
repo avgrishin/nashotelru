@@ -44,7 +44,7 @@ namespace Nashotelru
 
         if (ci == null)
         {
-          ci = new CultureInfo("en");
+          ci = Thread.CurrentThread.CurrentCulture;
           this.Session["Culture"] = ci;
         }
 
