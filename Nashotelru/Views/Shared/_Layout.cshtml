@@ -15,6 +15,17 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
+  <script src="~/Scripts/jquery.ui.totop.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({
+        easingType: 'swing'
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="body">
@@ -104,17 +115,5 @@
     </div>
   </footer>
 
-  @Scripts.Render("~/bundles/jquery")
-  @Scripts.Render("~/bundles/bootstrap")
-  @RenderSection("scripts", required: false)
-  <script src="~/Scripts/jquery.ui.totop.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $().UItoTop({
-        easingType: 'swing'
-      });
-    });
-  </script>
-  @*<script src="~/Scripts/ie10wp.js"></script>*@
 </body>
 </html>

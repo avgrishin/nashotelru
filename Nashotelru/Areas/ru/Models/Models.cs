@@ -11,19 +11,23 @@ namespace Nashotelru.Areas.ru.Models
 
     [Display(Name = "Дата")]
     [DataType(DataType.Date)]
+    [Required]
     [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
     public DateTime Date { get; set; }
 
     [Display(Name = "Заголовок", Prompt = "Заголовок")]
+    [Required]
     [AllowHtml]
     public string Title { get; set; }
 
     [Display(Name = "Описание", Prompt = "Описание")]
     [AllowHtml]
+    [DataType(DataType.MultilineText)]
     public string Description { get; set; }
 
     [Display(Name = "Содержание", Prompt = "Содержание")]
-    [AllowHtml]
+    [UIHint("tinymce_jquery_full"), AllowHtml]
+    [DataType(DataType.MultilineText)]
     public string Text { get; set; }
 
     [Display(Name = "Показывать?")]
