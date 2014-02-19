@@ -8,6 +8,16 @@ namespace Nashotelru.Areas.ru.Models
   public class News
   {
     public int ID { get; set; }
+    public DateTime Date { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Text { get; set; }
+    public bool IsEnabled { get; set; }
+  }
+
+  public class NewsViewModel
+  {
+    public int ID { get; set; }
 
     [Display(Name = "Дата")]
     [DataType(DataType.Date)]

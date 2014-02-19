@@ -16,7 +16,7 @@ namespace Nashotelru.Areas.Admin.Controllers
     // GET: /Admin/News/
     public ActionResult Index(int? id)
     {
-      return View(db.News.OrderByDescending(p => p.ID).ToPagedList(id ?? 1, 10));
+      return View(db.News.OrderByDescending(p => p.ID).Select(p => new NewsViewModel { ID = p.ID, Title = p.Title, Date = p.Date, Text = p.Text, Description = p.Description, IsEnabled = p.IsEnabled }).ToPagedList(id ?? 1, 10));
     }
 
     // GET: /Admin/News/Create
@@ -56,7 +56,8 @@ namespace Nashotelru.Areas.Admin.Controllers
         return HttpNotFound();
       }
       ViewBag.Title = "Редактирование новости";
-      return View(news);
+      var nvm = new NewsViewModel { ID = news.ID, Date = news.Date, Title = news.Title, Description = news.Description, Text = news.Text, IsEnabled = news.IsEnabled };
+      return View(nvm);
     }
 
     // POST: /Admin/News/Edit/5
@@ -64,11 +65,12 @@ namespace Nashotelru.Areas.Admin.Controllers
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> Edit([Bind(Include = "ID,Title,Description,Date,Text,IsEnabled")] News news)
+    public async Task<ActionResult> Edit([Bind(Include = "ID,Title,Description,Date,Text,IsEnabled")] NewsViewModel news)
     {
       if (ModelState.IsValid)
       {
-        db.Entry(news).State = EntityState.Modified;
+        var n = new News { ID = news.ID, Date = news.Date, Title = news.Title, Description = news.Description, Text = news.Text, IsEnabled = news.IsEnabled };
+        db.Entry(n).State = EntityState.Modified;
         await db.SaveChangesAsync();
         return RedirectToAction("Index");
       }

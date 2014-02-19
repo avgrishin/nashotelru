@@ -7,18 +7,24 @@ using System.Web.Routing;
 
 namespace Nashotelru
 {
-    public class RouteConfig
+  public class RouteConfig
+  {
+    public static void RegisterRoutes(RouteCollection routes)
     {
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+      routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Nashotelru.Controllers" }
-            );
-        }
+      routes.MapRoute(
+        name: "New",
+        url: "{lang}/{controller}/{action}/{id}",
+        defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
+        constraints: new { lang = "en|de|it|es|fr" },
+        namespaces: new[] { "Nashotelru.Controllers" });
+      routes.MapRoute(
+        name: "Default",
+        url: "{controller}/{action}/{id}",
+        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      );
     }
+  }
 }
