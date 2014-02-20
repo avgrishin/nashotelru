@@ -7,7 +7,8 @@ namespace Nashotelru.Controllers
   {
     public ActionResult Index()
     {
-      return View();
+      return RedirectToAction("Index", "Home", new { area = "ru"/*, lang = "ru"*/ });
+      //return View();
     }
 
     public ActionResult About()

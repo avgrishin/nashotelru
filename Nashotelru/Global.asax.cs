@@ -36,22 +36,22 @@ namespace Nashotelru
     //  }
     //}
 
-    protected void Application_AcquireRequestState(Object sender, EventArgs e)
-    {
-      if (HttpContext.Current.Session != null)
-      {
-        var ci = (CultureInfo)this.Session["Culture"];
+    //protected void Application_AcquireRequestState(Object sender, EventArgs e)
+    //{
+    //  if (HttpContext.Current.Session != null)
+    //  {
+    //    var ci = (CultureInfo)this.Session["Culture"];
 
-        if (ci == null)
-        {
-          ci = Thread.CurrentThread.CurrentCulture;
-          this.Session["Culture"] = ci;
-        }
+    //    if (ci == null)
+    //    {
+    //      ci = Thread.CurrentThread.CurrentCulture;
+    //      this.Session["Culture"] = ci;
+    //    }
 
-        Thread.CurrentThread.CurrentUICulture = ci;
-        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
-      }
-    }
+    //    Thread.CurrentThread.CurrentUICulture = ci;
+    //    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
+    //  }
+    //}
 
   }
 }
