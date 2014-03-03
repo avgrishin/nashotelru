@@ -1,4 +1,4 @@
-﻿using Nashotelru.Areas.ru.Models;
+﻿using Nashotelru.Models;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;

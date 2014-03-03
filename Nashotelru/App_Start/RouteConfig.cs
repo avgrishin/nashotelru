@@ -17,7 +17,7 @@ namespace Nashotelru
       {
         var culture = requestContext.RouteData.Values["culture"].ToString();
         var ci = new CultureInfo(culture);
-        Thread.CurrentThread.CurrentUICulture = ci;
+        System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
         Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
         return base.GetHttpHandler(requestContext);
       }
@@ -34,30 +34,38 @@ namespace Nashotelru
       //  namespaces: new[] { "Nashotelru.Controllers" });
 
       routes.MapRoute(
-        name: "Default",
-        url: "{controller}/{action}/{id}",
-        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+        name: "Account",
+        url: "Account/{action}/{id}",
+        defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
         namespaces: new[] { "Nashotelru.Controllers" }
       );
 
-      foreach (Route r in routes)
-      {
-        r.RouteHandler = new MultiCultureMvcRouteHandler();
-        r.Url = "{culture}/" + r.Url;
-        //Adding default culture 
-        if (r.Defaults == null)
-        {
-          r.Defaults = new RouteValueDictionary();
-        }
-        r.Defaults.Add("culture", Culture.en.ToString());
+      routes.MapRoute(
+        name: "Default",
+        url: "{culture}/{controller}/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
+        constraints: new { culture = Culture.en.ToString() + "|" + Culture.ru.ToString() + "|" + Culture.fr.ToString() },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
 
-        //Adding constraint for culture param
-        if (r.Constraints == null)
-        {
-          r.Constraints = new RouteValueDictionary();
-        }
-        r.Constraints.Add("culture", new CultureConstraint(Culture.en.ToString(), Culture.ru.ToString()));
-      }
+      //foreach (Route r in routes)
+      //{
+      //  r.RouteHandler = new MultiCultureMvcRouteHandler();
+      //  r.Url = "{culture}/" + r.Url;
+      //  //Adding default culture 
+      //  if (r.Defaults == null)
+      //  {
+      //    r.Defaults = new RouteValueDictionary();
+      //  }
+      //  r.Defaults.Add("culture", Culture.ru.ToString());
+
+      //  //Adding constraint for culture param
+      //  if (r.Constraints == null)
+      //  {
+      //    r.Constraints = new RouteValueDictionary();
+      //  }
+      //  r.Constraints.Add("culture", new CultureConstraint(Culture.en.ToString(), Culture.ru.ToString(), Culture.fr.ToString()));
+      //}
     }
   }
 

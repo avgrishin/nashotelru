@@ -1,10 +1,10 @@
-﻿using Nashotelru.Areas.ru.Models;
+﻿using Nashotelru.Models;
 using PagedList;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Linq;
 
 namespace Nashotelru.Areas.Admin.Controllers
 {

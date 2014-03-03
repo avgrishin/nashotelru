@@ -207,16 +207,17 @@
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ResponsesController.cs" />
-    <Compile Include="Areas\ru\Controllers\Default1Controller.cs" />
-    <Compile Include="Areas\ru\Controllers\EventsController.cs" />
-    <Compile Include="Areas\ru\Controllers\HomeController.cs" />
-    <Compile Include="Areas\ru\Controllers\NewsController.cs" />
-    <Compile Include="Areas\ru\Controllers\ResponseController.cs" />
-    <Compile Include="Areas\ru\Controllers\RestaurantController.cs" />
-    <Compile Include="Areas\ru\Controllers\RoomsController.cs" />
-    <Compile Include="Areas\ru\Controllers\SettingsController.cs" />
-    <Compile Include="Areas\ru\Models\Models.cs" />
-    <Compile Include="Areas\ru\ruAreaRegistration.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ResponseController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Migrations\201403021841459_page1.cs" />
+    <Compile Include="Migrations\201403021841459_page1.Designer.cs">
+      <DependentUpon>201403021841459_page1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Models.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -224,17 +225,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ShortGuid.cs" />
-    <Compile Include="Migrations\201402161815241_dt.cs" />
-    <Compile Include="Migrations\201402161815241_dt.Designer.cs">
-      <DependentUpon>201402161815241_dt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201402171805376_drb.cs" />
-    <Compile Include="Migrations\201402171805376_drb.Designer.cs">
-      <DependentUpon>201402171805376_drb.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Account\Account.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +239,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Account.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Shared\Menu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Shared\Menu.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -290,28 +294,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Areas\ru\Views\web.config" />
-    <Content Include="Areas\ru\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\_Layout_.cshtml" />
-    <Content Include="Areas\ru\Views\Home\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\_Carousel.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\_Reservation.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\_ReservationScript.cshtml" />
-    <Content Include="Areas\ru\Views\Home\Transfer.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\_News.cshtml" />
-    <Content Include="Areas\ru\Views\News\Index.cshtml" />
-    <Content Include="Areas\ru\Views\News\Det.cshtml" />
-    <Content Include="Areas\ru\Views\Home\Contact.cshtml" />
-    <Content Include="Areas\ru\Views\Restaurant\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Rooms\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Response\Create.cshtml" />
-    <Content Include="Areas\ru\Views\Default1\Create.cshtml" />
-    <Content Include="Areas\ru\Views\Default1\Delete.cshtml" />
-    <Content Include="Areas\ru\Views\Default1\Details.cshtml" />
-    <Content Include="Areas\ru\Views\Default1\Edit.cshtml" />
-    <Content Include="Areas\ru\Views\Default1\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Response\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Response\Created.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Carousel.cshtml" />
+    <Content Include="Views\Shared\_Reservation.cshtml" />
+    <Content Include="Views\Shared\_ReservationScript.cshtml" />
+    <Content Include="Views\Home\Transfer.cshtml" />
+    <Content Include="Views\Shared\_News.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Det.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Response\Create.cshtml" />
+    <Content Include="Views\Response\Index.cshtml" />
+    <Content Include="Views\Response\Created.cshtml" />
     <Content Include="Areas\Admin\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -483,20 +479,19 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Views\Shared\_Captcha.cshtml" />
     <Content Include="Views\Shared\_CaptchaScript.cshtml" />
-    <Content Include="Areas\ru\Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Shared\DateTime.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
-    <Content Include="Areas\ru\Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="index.html" />
+    <None Include="index.html_" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -533,7 +528,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Contact_.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -544,7 +539,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Account\Params.cshtml" />
     <Content Include="Views\Account\_LMenu.cshtml" />
@@ -571,6 +565,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shared\EditorTemplates\Date1.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Account\ComfirmationFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -584,11 +579,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201402161815241_dt.resx">
-      <DependentUpon>201402161815241_dt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201402171805376_drb.resx">
-      <DependentUpon>201402171805376_drb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403021841459_page1.resx">
+      <DependentUpon>201403021841459_page1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Account\Account.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -597,6 +589,14 @@
     <EmbeddedResource Include="Resources\Account\Account.ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Account.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Shared\Menu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Shared\Menu.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,7 @@
+﻿<div class="col-md-3">
+  <div class="list-group">
+    @Html.ActionLink("Личные данные", "Params", "Account", new { area = "" }, new { @class = string.Format("list-group-item{0}", ViewBag.Title == "Личные данные" ? " active" : "") })
+    @Html.ActionLink("Смена пароля", "Manage", "Account", new { area = "" }, new { @class = string.Format("list-group-item{0}", ViewBag.Title == "Смена пароля" ? " active" : "") })
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+﻿@using Nashotelru.Resources.Shared
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+  using (Html.BeginForm(Menu.LogOff, "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+  {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        @Html.ActionLink(linkText: "" + User.Identity.GetUserName() + "", actionName: "Params", controllerName: "Account", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
+      </li>
+      <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+  }
+}
+else
+{
+  <ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink(Menu.Login, "Login", "Account", new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink(Menu.Registration, "Register", "Account", new { area = "" }, htmlAttributes: new { id = "registerLink" })</li>
+  </ul>
+}

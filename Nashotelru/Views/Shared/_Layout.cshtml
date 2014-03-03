@@ -1,0 +1,119 @@
+﻿@using Nashotelru.Resources.Shared
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @*<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">*@
+  @*<meta name="viewport" content="width=640, user-scalable=yes">*@
+  <title>@ViewBag.Title - Гостиница НашОТЕЛЬ</title>
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+  @RenderSection("css", required: false)
+  @*<script src="~/Scripts/ie10wp.js"></script>*@
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
+  <script src="~/Scripts/jquery.ui.totop.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({
+        easingType: 'swing'
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="body">
+    <nav class="navbar navbar-default navbar-static-top no-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          @*@Html.ActionLink("НО", "Index", "Home", null, new { @class = "navbar-brand" })*@
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>@Html.ActionLink(Menu.SpecialOffers, "Index", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.OurRooms, "Index", "Rooms", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.Restaurant, "Index", "Restaurant", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.Contacts, "Contact", "Home", new { area = "" }, null)</li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><small>LANGUAGE</small> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>@Html.ActionLink("RUSSIAN", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.ru, returnUrl = this.Request.RawUrl }, null)</li>
+                <li>@Html.ActionLink("ENGLISH", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.en, returnUrl = this.Request.RawUrl }, null)</li>
+                <li>@Html.ActionLink("FRENCH", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.fr, returnUrl = this.Request.RawUrl }, null)</li>
+              </ul>
+            </li>
+          </ul>
+          @Html.Partial("_LoginPartial")
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-4 no-logo text-center">
+          <a href="/ru"><img src="~/Content/img/logo.gif" /></a>
+        </div>
+        <div class="col-lg-9 col-sm-8 no-address">
+          @Menu.Phone <span>+7 (812) 323-22-31</span><br />
+          @Menu.Fax <span>+7 (812) 328-35-46</span><br />
+          <p class="no-addr">@Menu.Address</p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      @RenderBody()
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <h5>@Menu.DM_Hotel</h5>
+          <ul class="list-unstyled">
+            <li>@Html.ActionLink(Menu.DM_Rooms, "Index", "Rooms", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Restaurant, "Index", "Restaurant", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Contacts, "Contact", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_News, "Index", "News", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Responds, "Index", "Response", new { area = "" }, null)</li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h5>@Menu.DM_Events</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">@Menu.DM_SpecialOffers</a></li>
+            <li>@Html.ActionLink(Menu.DM_Activities, "Index", "Events", new { area = "" }, null)</li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h5>@Menu.DM_Services</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">@Menu.DM_Booking</a></li>
+            <li>@Html.ActionLink(Menu.DM_Transfer, "Transfer", "Home", new { area = "" }, null)</li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h5>@Menu.DM_Information</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">@Menu.DM_Visas</a></li>
+            <li><a href="#">@Menu.DM_Bridges</a></li>
+            <li><a href="#">@Menu.DM_Vacances</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; @DateTime.Now.Year - Н<i>аш</i>ОTEL</p>
+    </div>
+  </footer>
+
+</body>
+</html>

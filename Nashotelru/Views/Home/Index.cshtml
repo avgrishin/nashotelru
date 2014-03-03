@@ -1,0 +1,60 @@
+﻿@model Nashotelru.Models.HomeIndexViewModel
+@{
+  ViewBag.Title = "Главная";
+}
+<div class="row">
+  <div class="col-md-4 col-lg-3">
+    @Html.Partial("_Reservation")
+  </div>
+  <div class="col-md-8 col-lg-9 hidden-xs">
+    @Html.Partial("_Carousel")
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-3">
+    @Html.Partial("_News", Model.News)
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-12 no-h1">
+      @Html.Raw(Model.Page == null ? "" : Model.Page.Content)
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h5>
+          Мы в социальных сетях
+        </h5>
+        <ul class="list-inline">
+          <li><a href="http://www.facebook.com/NasHOTEL" target="_blank"><img alt="Наш ОТЕЛЬ Facebook" src="~/Content/img/facebook.jpg" width="35" height="35" /></a></li>
+          <li><a href="http://twitter.com/Nash_OTEL" target="_blank"><img alt="Наш ОТЕЛЬ Twitter" src="~/Content/img/twitter.jpg" width="35" height="35" /></a></li>
+          <li><a href="http://vkontakte.ru/club21938026" target="_blank"><img alt="Наш ОТЕЛЬ VKontakte" src="~/Content/img/vkontakte.jpg" width="35" height="35" /></a></li>
+          <li><a href="http://nashotelspb.blogspot.com/" target="_blank"><img alt="Наш ОТЕЛЬ Blogger" src="~/Content/img/blogger.jpg" width="34" height="34" /></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="tripadvisor">
+          <div id="TA_tchotel330" class="TA_tchotel text-center">
+            <ul id="WgtgUrSTyvN5" class="TA_links A2O2uoE1HZz no-ta">
+              <li id="i59HM0xi5nJD" class="WxJhoKc1"><a href=http://www.tripadvisor.ru/Hotel_Review-g298507-d623287-Reviews-NasHOTEL-St_Petersburg_Northwestern_District.html>Гостиница НашОТЕЛЬ</a></li>
+            </ul>
+          </div>
+          <script src="http://www.jscache.com/wejs?wtype=tchotel&amp;uniq=330&amp;locationId=623287&amp;lang=ru&amp;year=2013"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+@section css
+{
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+}
+@section scripts
+{
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  @Html.Partial("_ReservationScript")
+}

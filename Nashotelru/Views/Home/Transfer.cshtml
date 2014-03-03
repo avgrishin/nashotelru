@@ -1,0 +1,38 @@
+﻿@{
+  ViewBag.Title = "Заказ трансфера";
+}
+
+<script type="text/javascript">
+  (function (w) {
+    var q = {
+      'locale': 'ru',
+      'ext_css': '', //
+      'selector': '#iframe-wrap', // id элемента контейнера
+      'style-iframe': {
+        'width': '917px', // width
+        'padding': '0 10px', // padding iframe
+        'background': 'white', //background,
+        'border': '0px',
+      },
+      'widgetId': 8
+    },
+        d = w.document,
+        s = d.createElement('script');
+    window.styleFrame = q;
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = "http://itransfers.ru/js/iframe2.js";
+    (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+
+  })(window);
+</script>
+<div class="row">
+  <div class="col-md-3">
+    @Html.Partial("_News")
+  </div>
+  <div class="col-md-6">
+    <div id="iframe-wrap"></div>
+    <p><a target="_blank" href="http://www.a2b.ru/">A2B.ru</a> - онлайн заказ такси по всему миру (трансфер онлайн)</p>
+  </div>
+</div>
+
