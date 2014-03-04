@@ -31,11 +31,13 @@ namespace Nashotelru.Areas.Admin.Controllers
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> Create([Bind(Include = "Title,Description,Date,Text,IsEnabled")] News news)
+    public async Task<ActionResult> Create([Bind(Include = "Title,Description,Date,Text,IsEnabled")] NewsViewModel news)
     {
       if (ModelState.IsValid)
       {
-        db.News.Add(news);
+        var n = new News { ID = news.ID, Date = news.Date, Title = news.Title, Description = news.Description, Text = news.Text, IsEnabled = news.IsEnabled };
+
+        db.News.Add(n);
         await db.SaveChangesAsync();
         return RedirectToAction("Index");
       }
