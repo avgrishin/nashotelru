@@ -45,7 +45,8 @@ namespace Nashotelru.Models
     public string Description { get; set; }
 
     [Display(Name = "Содержание", Prompt = "Содержание")]
-    [UIHint("tinymce_jquery_full"), AllowHtml]
+    //[UIHint("tinymce_jquery_full"), AllowHtml]
+    [UIHint("ckeditor"), AllowHtml]
     [DataType(DataType.MultilineText)]
     public string Text { get; set; }
 
