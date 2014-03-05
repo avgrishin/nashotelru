@@ -12,6 +12,7 @@ namespace Nashotelru.Models
     public string Language { get; set; }
     [MaxLength(120)]
     public string Name { get; set; }
+    [UIHint("ckeditor"), AllowHtml]
     public string Content { get; set; }
   }
   public class News

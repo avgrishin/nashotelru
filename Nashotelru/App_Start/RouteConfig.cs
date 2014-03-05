@@ -33,12 +33,12 @@ namespace Nashotelru
       //  constraints: new { lang = "ru|en||fr" },
       //  namespaces: new[] { "Nashotelru.Controllers" });
 
-      routes.MapRoute(
-        name: "Account",
-        url: "Account/{action}/{id}",
-        defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
-        namespaces: new[] { "Nashotelru.Controllers" }
-      );
+      //routes.MapRoute(
+      //  name: "Account",
+      //  url: "Account/{action}/{id}",
+      //  defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
+      //  namespaces: new[] { "Nashotelru.Controllers" }
+      //);
 
       routes.MapRoute(
         name: "Default",
