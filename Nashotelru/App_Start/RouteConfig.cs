@@ -25,7 +25,7 @@ namespace Nashotelru
     public static void RegisterRoutes(RouteCollection routes)
     {
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+      
       //routes.MapRoute(
       //  name: "New",
       //  url: "{lang}/{controller}/{action}/{id}",
@@ -40,11 +40,24 @@ namespace Nashotelru
       //  namespaces: new[] { "Nashotelru.Controllers" }
       //);
 
+      //routes.MapRoute(
+      //  name: "Default",
+      //  url: "{controller}/{action}/{id}",
+      //  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+      //  namespaces: new[] { "Nashotelru.Controllers" });
+
       routes.MapRoute(
         name: "Default",
         url: "{culture}/{controller}/{action}/{id}",
         defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
         constraints: new { culture = Culture.en.ToString() + "|" + Culture.ru.ToString() + "|" + Culture.fr.ToString() },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
+
+      routes.MapRoute(
+        name: "Default1",
+        url: "{controller}/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
         namespaces: new[] { "Nashotelru.Controllers" }
       ).RouteHandler = new MultiCultureMvcRouteHandler();
 

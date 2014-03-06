@@ -1,6 +1,9 @@
 ﻿using Nashotelru.Models;
+using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Nashotelru.Controllers
 {
@@ -32,15 +35,23 @@ namespace Nashotelru.Controllers
 
     public ActionResult Contact()
     {
-      return View();
+      var vm = new HomeIndexViewModel
+      {
+        Page = db.Page.Where(p => p.Name == "HomeContact" && p.Language == System.Threading.Thread.CurrentThread.CurrentUICulture.Name).FirstOrDefault(),
+        News = db.News.Where(p => p.IsEnabled).OrderByDescending(p => p.Date).ThenByDescending(p => p.ID).Take(5).ToList()
+      };
+      return View(vm);
     }
+
 
     public ActionResult SetLanguage(Culture lang, string returnUrl)
     {
       if (returnUrl.Length >= 3)
       {
-        returnUrl = returnUrl.Substring(3);
+        if (returnUrl.StartsWith("/" + Culture.ru.ToString(), StringComparison.CurrentCultureIgnoreCase) || returnUrl.StartsWith("/" + Culture.en.ToString(), StringComparison.CurrentCultureIgnoreCase) || returnUrl.StartsWith("/" + Culture.fr.ToString(), StringComparison.CurrentCultureIgnoreCase))
+          returnUrl = returnUrl.Substring(3);
       }
+      //return RedirectToAction(actionName: routeData.Values["action"].ToString(), controllerName: routeData.Values["controller"].ToString(), routeValues: routeValues);
       return Redirect("/" + lang.ToString() + returnUrl);
     }
   }

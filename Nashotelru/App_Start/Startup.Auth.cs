@@ -32,12 +32,12 @@ namespace Nashotelru
         string returnUrl = HttpUtility.ParseQueryString(uri.Query)[context.Options.ReturnUrlParameter];
         routeValues.Add(context.Options.ReturnUrlParameter, returnUrl);
 
+        routeValues.Add("area", "");
+        
         //Overwrite the redirection uri
-        var u = new UrlHelper();
-        context.RedirectUri = u.Action("login", "account", routeValues);
+        var u = new UrlHelper(HttpContext.Current.Request.RequestContext);
+        context.RedirectUri = u.Action("Login", "Account", routeValues);
 
-        //string newURI = "";
-        //context.RedirectUri = newURI;
         originalHandler.Invoke(context);
       };
 
