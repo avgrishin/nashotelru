@@ -25,41 +25,11 @@ namespace Nashotelru.Models
     public bool IsEnabled { get; set; }
   }
 
-  public class NewsViewModel
-  {
-    public int ID { get; set; }
-
-    [Display(Name = "Дата")]
-    [DataType(DataType.Date)]
-    [Required]
-    [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-    public DateTime Date { get; set; }
-
-    [Display(Name = "Заголовок", Prompt = "Заголовок")]
-    [Required]
-    [AllowHtml]
-    public string Title { get; set; }
-
-    [Display(Name = "Описание", Prompt = "Описание")]
-    [AllowHtml]
-    [DataType(DataType.MultilineText)]
-    public string Description { get; set; }
-
-    [Display(Name = "Содержание", Prompt = "Содержание")]
-    //[UIHint("tinymce_jquery_full"), AllowHtml]
-    [UIHint("ckeditor"), AllowHtml]
-    [DataType(DataType.MultilineText)]
-    public string Text { get; set; }
-
-    [Display(Name = "Показывать?")]
-    public bool IsEnabled { get; set; }
-  }
-
   public class Response
   {
     public int ID { get; set; }
 
-    [Display(Name = "Дата")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "Date")]
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
     public DateTime Date { get; set; }
@@ -67,29 +37,29 @@ namespace Nashotelru.Models
     [Required]
     [MaxLength(200)]
     [StringLength(200)]
-    [Display(Name = "Ваше имя", Prompt = "Введите Ваше имя")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "Name", Prompt = "NamePrompt")]
     public string Name { get; set; }
 
     [Required]
     [MaxLength(200)]
     [StringLength(200)]
     [DataType(DataType.EmailAddress)]
-    [Display(Name = "Координаты для обратной связи", Prompt = "Введите Ваш EMail")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "EmailAddress", Prompt = "EmailAddressPrompt")]
     public string Mail { get; set; }
 
     [Required]
-    [Display(Name = "Ваше сообщение")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "Text")]
     [DataType(DataType.MultilineText)]
     [AllowHtml]
     public string Text { get; set; }
 
-    [Display(Name = "Ответ")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "Text2")]
     [AllowHtml]
     public string Text2 { get; set; }
 
     [MaxLength(15)]
     public string IP { get; set; }
-    [Display(Name = "Показывать?")]
+    [Display(ResourceType = typeof(Resources.Response.Response), Name = "IsVisible")]
     public bool IsVisible { get; set; }
   }
   public class NashotelDBContext : DbContext

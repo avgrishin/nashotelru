@@ -241,6 +241,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Account.ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Response\Response.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Response.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Response\Response.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Response.ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Shared\Menu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -827,6 +837,15 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Account.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Response\Response.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Response.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Response\Response.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Response.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Shared\Menu.fr.resx" />
     <EmbeddedResource Include="Resources\Shared\Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>

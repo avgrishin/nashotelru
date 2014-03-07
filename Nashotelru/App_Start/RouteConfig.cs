@@ -50,7 +50,7 @@ namespace Nashotelru
         name: "Default",
         url: "{culture}/{controller}/{action}/{id}",
         defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
-        constraints: new { culture = Culture.en.ToString() + "|" + Culture.ru.ToString() + "|" + Culture.fr.ToString() },
+        constraints: new { culture = Culture.en.ToString() + "|" + Culture.fr.ToString() },
         namespaces: new[] { "Nashotelru.Controllers" }
       ).RouteHandler = new MultiCultureMvcRouteHandler();
 

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Nashotelru.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Nashotelru.Controllers
 {
-    public class RestaurantController : Controller
+  public class RestaurantController : Controller
+  {
+    private NashotelDBContext db = new NashotelDBContext();
+    public ActionResult Index()
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-	}
+      return View(db.Page.Where(p => p.Name == "Restaurant" && p.Language == System.Threading.Thread.CurrentThread.CurrentUICulture.Name).FirstOrDefault());
+    }
+  }
 }

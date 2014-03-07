@@ -117,115 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address" xml:space="preserve">
-    <value>50, 11-ya Liniya, Vasilievsky Ostrov, St Petersburg</value>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
   </data>
-  <data name="Booking" xml:space="preserve">
-    <value>BOOKING</value>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Координаты для обратной связи</value>
   </data>
-  <data name="Contacts" xml:space="preserve">
-    <value>CONTACTS</value>
+  <data name="EmailAddressPrompt" xml:space="preserve">
+    <value>Введите Ваш EMail</value>
   </data>
-  <data name="DM_Activities" xml:space="preserve">
-    <value>Activities</value>
+  <data name="InputText" xml:space="preserve">
+    <value>Введите значение</value>
   </data>
-  <data name="DM_Booking" xml:space="preserve">
-    <value>Booking</value>
+  <data name="IsVisible" xml:space="preserve">
+    <value>Показывать?</value>
   </data>
-  <data name="DM_Bridges" xml:space="preserve">
-    <value>Bridges</value>
+  <data name="Name" xml:space="preserve">
+    <value>Ваше имя</value>
   </data>
-  <data name="DM_Contacts" xml:space="preserve">
-    <value>Contacts</value>
+  <data name="NamePrompt" xml:space="preserve">
+    <value>Введите Ваше имя</value>
   </data>
-  <data name="DM_Events" xml:space="preserve">
-    <value>EVENTS</value>
+  <data name="PermissibleTags" xml:space="preserve">
+    <value>Допустимые HTML тэги</value>
   </data>
-  <data name="DM_Hotel" xml:space="preserve">
-    <value>HOTEL</value>
+  <data name="RefreshText" xml:space="preserve">
+    <value>Обновить</value>
   </data>
-  <data name="DM_Information" xml:space="preserve">
-    <value>Information</value>
+  <data name="RequiredMessage" xml:space="preserve">
+    <value>Поле не заполнено</value>
   </data>
-  <data name="DM_News" xml:space="preserve">
-    <value>News</value>
+  <data name="ResponseName" xml:space="preserve">
+    <value>Отзыв</value>
   </data>
-  <data name="DM_Responses" xml:space="preserve">
-    <value>Responses</value>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
   </data>
-  <data name="DM_Restaurant" xml:space="preserve">
-    <value>Restaurant</value>
+  <data name="Text" xml:space="preserve">
+    <value>Ваше сообщение</value>
   </data>
-  <data name="DM_Rooms" xml:space="preserve">
-    <value>Rooms</value>
-  </data>
-  <data name="DM_Services" xml:space="preserve">
-    <value>SERVICES</value>
-  </data>
-  <data name="DM_SpecialOffers" xml:space="preserve">
-    <value>SpecialOffers</value>
-  </data>
-  <data name="DM_Transfer" xml:space="preserve">
-    <value>Order of transfer</value>
-  </data>
-  <data name="DM_Vacances" xml:space="preserve">
-    <value>Career</value>
-  </data>
-  <data name="DM_Visas" xml:space="preserve">
-    <value>Visas</value>
-  </data>
-  <data name="Fax" xml:space="preserve">
-    <value>FAX</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>LOGIN</value>
-  </data>
-  <data name="LogOff" xml:space="preserve">
-    <value>LOGOFF</value>
-  </data>
-  <data name="News" xml:space="preserve">
-    <value>NEWS</value>
-  </data>
-  <data name="OurRooms" xml:space="preserve">
-    <value>OUR ROOMS</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>PHONE</value>
-  </data>
-  <data name="Registration" xml:space="preserve">
-    <value>SIGNUP</value>
-  </data>
-  <data name="Restaurant" xml:space="preserve">
-    <value>RESTAURANT</value>
-  </data>
-  <data name="SpecialOffers" xml:space="preserve">
-    <value>SPECIAL OFFERS</value>
-  </data>
-  <data name="BK_Adults" xml:space="preserve">
-    <value>Adults</value>
-  </data>
-  <data name="BK_CheckIn" xml:space="preserve">
-    <value>Check in</value>
-  </data>
-  <data name="BK_CheckOut" xml:space="preserve">
-    <value>Check out</value>
-  </data>
-  <data name="BK_Children" xml:space="preserve">
-    <value>Children</value>
-  </data>
-  <data name="BK_Find" xml:space="preserve">
-    <value>Find</value>
-  </data>
-  <data name="BK_Promocode" xml:space="preserve">
-    <value>Promocode</value>
-  </data>
-  <data name="BK_Rooms" xml:space="preserve">
-    <value>Rooms</value>
-  </data>
-  <data name="HomeIndexTitle" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="Hotel" xml:space="preserve">
-    <value>Hotel NashOTEL</value>
+  <data name="Text2" xml:space="preserve">
+    <value>Ответ</value>
   </data>
 </root>

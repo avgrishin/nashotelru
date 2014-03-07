@@ -2,13 +2,13 @@
   $(document).ready(function () {
     $(function () {
       var dt = new Date();
-      $("#arrive, #depart").datepicker({ showOtherMonths: true, selectOtherMonths: true, numberOfMonths: 1, duration: "slow", dateFormat: "dd.mm.yy", firstDay: 1, monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], prevText: "Раньше", nextText: "Позже", dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"] });
-      $("#arrive").val(('0' + dt.getDate()).slice(-2) + '.' + ('0' + (dt.getMonth() + 1)).slice(-2) + '.' + dt.getFullYear()).datepicker("option", "onClose", function (selectedDate) {
-        $("#depart").datepicker("option", "minDate", selectedDate);
+      $("#arrivalDate, #departureDate").datepicker({ showOtherMonths: true, selectOtherMonths: true, numberOfMonths: 1, duration: "slow", dateFormat: "dd.mm.yy", firstDay: 1, monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], prevText: "Раньше", nextText: "Позже", dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"] });
+      $("#arrivalDate").datepicker("option", "maxDate", $("#departureDate").val())/*.val(('0' + dt.getDate()).slice(-2) + '.' + ('0' + (dt.getMonth() + 1)).slice(-2) + '.' + dt.getFullYear())*/.datepicker("option", "onClose", function (selectedDate) {
+        $("#departureDate").datepicker("option", "minDate", selectedDate);
       });
       dt.setDate(dt.getDate() + 1);
-      $("#depart").val(('0' + dt.getDate()).slice(-2) + '.' + ('0' + (dt.getMonth() + 1)).slice(-2) + '.' + dt.getFullYear()).datepicker("option", "onClose", function (selectedDate) {
-        $("#arrive").datepicker("option", "maxDate", selectedDate);
+      $("#departureDate").datepicker("option", "minDate", $("#arrivalDate").val())/*.val(('0' + dt.getDate()).slice(-2) + '.' + ('0' + (dt.getMonth() + 1)).slice(-2) + '.' + dt.getFullYear())*/.datepicker("option", "onClose", function (selectedDate) {
+        $("#arrivalDate").datepicker("option", "maxDate", selectedDate);
       });
     });
   });

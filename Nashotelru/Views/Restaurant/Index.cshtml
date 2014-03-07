@@ -1,10 +1,12 @@
-﻿@{
+﻿@model Nashotelru.Models.Page
+@{
   ViewBag.Title = "Ресторан";
 }
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h2>@ViewBag.Title</h2>
-    <p><a data-lightbox="image-1" title="Ресторан" target="_blank" href="~/Content/uploads/2LaBotanique.jpg"><img hspace="10" align="left" alt="увеличить" style="width: 200px; height: 132px;" src="~/Content/uploads/1LaBotanique.jpg" /></a>Ресторан «La Botanique» предлагает своим гостям большой выбор как классических блюд русской и европейской кухонь, так и оригинальные предложения от Шеф-повара.</p>
+    @Html.Raw(Model == null ? "" : Model.Content)
+    @*<p><a data-lightbox="image-1" title="Ресторан" target="_blank" href="~/Content/uploads/2LaBotanique.jpg"><img hspace="10" align="left" alt="увеличить" style="width: 200px; height: 132px;" src="~/Content/uploads/1LaBotanique.jpg" /></a>Ресторан «La Botanique» предлагает своим гостям большой выбор как классических блюд русской и европейской кухонь, так и оригинальные предложения от Шеф-повара.</p>
     <p>В оформлении «La Botanique» удивительным образом сочетаются и дополняют друг друга стили хай-тек и классический. Благодаря трансляции ведущих международных каналов над барной стойкой ресторана наши гости всегда в курсе происходящих событий, а классический интерьер создает атмосферу торжественной элегантности.</p><br />
     <p>Ресторан «La Botanique» открыт:<a data-lightbox="image-1" title="Ресторан" target="_blank" href="~/Content/uploads/2LaBotanigue1.jpg"><img hspace="10" align="right" alt="увеличить" style="width: 200px; height: 133px;" src="~/Content/uploads/1LaBonanique1.jpg" /></a></p>
     <ul>
@@ -1291,7 +1293,7 @@
           <br><a href="http://www.nashotel.ru/events/child/">подробно</a>
         </div>
       </li>
-    </ul>
+    </ul>*@
   </div>
 </div>
 @section css

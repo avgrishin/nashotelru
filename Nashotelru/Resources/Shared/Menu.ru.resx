@@ -150,7 +150,7 @@
   <data name="DM_News" xml:space="preserve">
     <value>Новости</value>
   </data>
-  <data name="DM_Responds" xml:space="preserve">
+  <data name="DM_Responses" xml:space="preserve">
     <value>Отзывы</value>
   </data>
   <data name="DM_Restaurant" xml:space="preserve">
@@ -200,5 +200,32 @@
   </data>
   <data name="SpecialOffers" xml:space="preserve">
     <value>АКЦИИ</value>
+  </data>
+  <data name="BK_Adults" xml:space="preserve">
+    <value>Взрослых</value>
+  </data>
+  <data name="BK_CheckIn" xml:space="preserve">
+    <value>Дата заезда</value>
+  </data>
+  <data name="BK_CheckOut" xml:space="preserve">
+    <value>Дата выезда</value>
+  </data>
+  <data name="BK_Children" xml:space="preserve">
+    <value>Детей</value>
+  </data>
+  <data name="BK_Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="BK_Promocode" xml:space="preserve">
+    <value>Промокод</value>
+  </data>
+  <data name="BK_Rooms" xml:space="preserve">
+    <value>Номеров</value>
+  </data>
+  <data name="HomeIndexTitle" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Гостиница НашОТЕЛЬ</value>
   </data>
 </root>
