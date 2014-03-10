@@ -66,7 +66,7 @@ form/*[name="prebron"]*/ .col-xs-3:first-child, form .col-xs-4:first-child, form
 form/*[name="prebron"]*/ .col-xs-3:last-child, form .col-xs-4:last-child, form .col-xs-6:last-child, form .col-sm-4:last-child {padding-right: 15px;}
 .pagination > .active > a,.pagination > .active > span,.pagination > .active > a:hover,.pagination > .active > span:hover,.pagination > .active > a:focus,.pagination > .active > span:focus {background-color: #47a447;border-color: #398439;}
 .gray {color:#999;}
-.no-rooms {margin-bottom:20px}
+.no-rooms {margin-bottom:20px;margin-top:20px;height:450px;}
 .no-logo { 
     /*text-align: left;*/ 
     /*margin-bottom: 15px;*/

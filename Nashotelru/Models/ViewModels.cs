@@ -85,4 +85,13 @@ namespace Nashotelru.Models
     [Display(ResourceType = typeof(Resources.Shared.Menu), Name = "BK_Promocode")]
     public string promoText { get; set; }
   }
+
+  public class PageViewModel
+  {
+    public int ID { get; set; }
+    [MaxLength(2)]
+    public string Language { get; set; }
+    [MaxLength(120)]
+    public string Name { get; set; }
+  }
 }

@@ -61,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-sm-4 no-logo text-center">
-          <a href="/ru"><img src="~/Content/img/logo.gif" /></a>
+          <a href="@Url.Action("Index", "Home", new { area = "" })"><img src="~/Content/img/logo.gif" /></a>
         </div>
         <div class="col-lg-9 col-sm-8 no-address">
           @Menu.Phone <span>+7 (812) 323-22-31</span><br />
@@ -105,15 +105,14 @@
         <div class="col-md-3 col-sm-6">
           <h5>@Menu.DM_Information</h5>
           <ul class="list-unstyled">
-            <li><a href="#">@Menu.DM_Visas</a></li>
-            <li><a href="#">@Menu.DM_Bridges</a></li>
-            <li><a href="#">@Menu.DM_Vacances</a></li>
+            <li>@Html.ActionLink(Menu.DM_Visas, "Visas", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Bridges, "Bridges", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Vacances, "Career", "Home", new { area = "" }, null)</li>
           </ul>
         </div>
       </div>
       <p>&copy; @DateTime.Now.Year - Н<i>аш</i>ОTEL</p>
     </div>
   </footer>
-
 </body>
 </html>

@@ -51,4 +51,4 @@
 }
 <br />
   Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-  @Html.PagedListPager(Model, id => Url.Action("Responses", new { id }))
+  @Html.PagedListPager(Model, id => Url.Action("Index", new { id }))
