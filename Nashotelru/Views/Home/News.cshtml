@@ -1,0 +1,19 @@
+﻿@model PagedList.IPagedList<Nashotelru.Models.NewsViewModel>
+@using PagedList.Mvc;
+@{
+  ViewBag.Title = "Новости";
+}
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>@ViewBag.Title</h2>
+    <ul class="list-unstyled">
+      @foreach (var item in Model)
+      {
+        <li><p><small>@Html.DisplayFor(p=>item.Date)</small><br />@Html.ActionLink(item.Title, "NewsDetail", new { id = item.ID })</p><p>@Html.Raw(item.Description)</p><hr /></li>
+      }
+    </ul>
+    <br />
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+    @Html.PagedListPager(Model, id => Url.Action("News", new { id }))
+  </div>
+</div>

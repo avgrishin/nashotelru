@@ -127,7 +127,7 @@
     <value>Введите Ваш EMail</value>
   </data>
   <data name="InputText" xml:space="preserve">
-    <value>Введите значение</value>
+    <value>Введите код на картинке</value>
   </data>
   <data name="IsVisible" xml:space="preserve">
     <value>Показывать?</value>

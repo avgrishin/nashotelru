@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Nashotelru.Models.News>
+﻿@model IEnumerable<Nashotelru.Models.NewsViewModel>
 @using Nashotelru.Resources.Shared
 <div class="panel panel-success">
   <div class="panel-heading text-center">@Menu.News</div>
@@ -6,7 +6,7 @@
     <ul class="list-unstyled">
       @foreach (var item in Model)
       {
-        <li><p><small>@item.Date.ToString("dd.MM.yyyy")</small><br />@Html.ActionLink(item.Title, "Det", "News", new { id = item.ID }, null)</p></li>
+        <li><p><small>@Html.DisplayFor(p => item.Date)</small><br />@Html.ActionLink(item.Title, "NewsDetail", new { id = item.ID }, null)</p></li>
       }
     </ul>
   </div>

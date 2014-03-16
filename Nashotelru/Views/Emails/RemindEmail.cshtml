@@ -1,6 +1,6 @@
 ﻿To: @Html.Raw(ViewBag.To)
 From: @Html.Raw(ViewBag.From)
-Subject: НашОТЕЛЬ: Восстановление пароля
+Subject: Гостиница НашОТЕЛЬ Санкт-Петербург: Восстановление доступа к сайту
 Content-Type: text/html; charset=utf-8
 
 <html>
@@ -9,13 +9,10 @@ Content-Type: text/html; charset=utf-8
   === ЭТО АВТОМАТИЧЕСКОЕ СООБЩЕНИЕ, НЕ ОТВЕЧАЙТЕ НА НЕГО ===<br />
   ==========================================================<br />
   <br />
-  Приветствуем Вас!<br />
+  <h2>Восстановление доступа к сайту</h2>
   <br />
-  НашОТЕЛЬ получил запрос на восстановление пароля. Для этого необходимо перейти по ссылке @Html.ActionLink(Url.Action("RemindConfirm", "Account", new { id = ViewBag.ReminderToken }, "http"), "RemindConfirm", "Account", "http", null, "", new { id = ViewBag.ReminderToken }, new { target = "_blank" })<br />
+  Вы отправили запрос на восстановление доступа к личному кабинету на <a href="nashotel.ru">nashotel.ru</a>. Для смены пароля перейдите по следующей ссылке: @Html.ActionLink(Url.Action("RemindConfirm", "Account", new { id = ViewBag.ReminderToken }, "http"), "RemindConfirm", "Account", "http", null, "", new { id = ViewBag.ReminderToken }, new { target = "_blank" }).<br />
   <br />
-  Если Вы не отправляли запрос на восстановление пароля на nashotel.ru и считаете это письмо ошибкой, просто игнорируйте данное сообщение.<br />
-  <br />
-  С уважением,<br />
-  администрация НашОТЕЛЬ.<br />
+  Если Вы не отправляли запрос на восстановление пароля на <a href="nashotel.ru">nashotel.ru</a> и считаете это письмо ошибкой, просто игнорируйте данное сообщение.
 </body>
 </html>

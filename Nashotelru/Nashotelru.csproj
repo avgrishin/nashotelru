@@ -213,7 +213,6 @@
     <Compile Include="Areas\Admin\Controllers\ResponsesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\ResponseController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -268,6 +267,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-image-gallery.css" />
+    <Content Include="Content\bootstrap-image-gallery.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -309,6 +310,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\blueimp\css\bootstrap-image-gallery.css" />
+    <Content Include="Scripts\blueimp\css\bootstrap-image-gallery.min.css" />
+    <Content Include="Scripts\blueimp\img\loading.gif" />
+    <Content Include="Scripts\blueimp\js\bootstrap-image-gallery.js" />
+    <Content Include="Scripts\blueimp\js\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
@@ -831,20 +837,35 @@
     <Content Include="Scripts\ckfinder\skins\v1\richcombo.css" />
     <Content Include="Scripts\ckfinder\skins\v1\skin.js" />
     <Content Include="Scripts\ckfinder\skins\v1\uipanel.css" />
+    <Content Include="Scripts\fancybox\blank.gif" />
+    <Content Include="Scripts\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Scripts\fancybox\fancybox_loading.gif" />
+    <Content Include="Scripts\fancybox\fancybox_overlay.png" />
+    <Content Include="Scripts\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Scripts\fancybox\fancybox_sprite.png" />
+    <Content Include="Scripts\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.css" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.pack.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />
     <Content Include="Views\Shared\_Reservation.cshtml" />
     <Content Include="Views\Shared\_ReservationScript.cshtml" />
     <Content Include="Views\Home\Transfer.cshtml" />
     <Content Include="Views\Shared\_News.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\Det.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\NewsDetail.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
-    <Content Include="Views\Rooms\Index.cshtml" />
-    <Content Include="Views\Response\Create.cshtml" />
-    <Content Include="Views\Response\Index.cshtml" />
-    <Content Include="Views\Response\Created.cshtml" />
+    <Content Include="Views\Home\Restaurant.cshtml" />
+    <Content Include="Views\Home\Rooms.cshtml" />
+    <Content Include="Views\Home\ResponseNew.cshtml" />
+    <Content Include="Views\Home\Response.cshtml" />
+    <Content Include="Views\Home\ResponseCreated.cshtml" />
     <Content Include="Areas\Admin\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1016,7 +1037,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Views\Shared\_Captcha.cshtml" />
     <Content Include="Views\Shared\_CaptchaScript.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Areas\Admin\Views\News\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
@@ -1116,11 +1137,17 @@
     <Content Include="Views\Account\ComfirmationFailure.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ckeditor.cshtml" />
     <Content Include="Views\Home\Career.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Scripts\ckfinder\userfiles\" />
+    <Folder Include="Views\Events\" />
+    <Folder Include="Views\News\" />
+    <Folder Include="Views\Response\" />
+    <Folder Include="Views\Restaurant\" />
+    <Folder Include="Views\Rooms\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

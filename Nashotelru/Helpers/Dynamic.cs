@@ -2,7 +2,7 @@
 using System.Dynamic;
 using System.Web.Routing;
 
-namespace Nashotelru.Helpers
+namespace System
 {
   public static class DynamicHelper
   {

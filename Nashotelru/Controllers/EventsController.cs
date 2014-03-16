@@ -8,9 +8,5 @@ namespace Nashotelru.Controllers
 {
   public class EventsController : Controller
   {
-    public ActionResult Index()
-    {
-      return View();
-    }
   }
 }

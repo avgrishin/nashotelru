@@ -25,38 +25,48 @@ namespace Nashotelru
     public static void RegisterRoutes(RouteCollection routes)
     {
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-      
-      //routes.MapRoute(
-      //  name: "New",
-      //  url: "{lang}/{controller}/{action}/{id}",
-      //  defaults: new { lang = "ru", controller = "Home", action = "Index", id = UrlParameter.Optional },
-      //  constraints: new { lang = "ru|en||fr" },
-      //  namespaces: new[] { "Nashotelru.Controllers" });
-
-      //routes.MapRoute(
-      //  name: "Account",
-      //  url: "Account/{action}/{id}",
-      //  defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
-      //  namespaces: new[] { "Nashotelru.Controllers" }
-      //);
-
-      //routes.MapRoute(
-      //  name: "Default",
-      //  url: "{controller}/{action}/{id}",
-      //  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-      //  namespaces: new[] { "Nashotelru.Controllers" });
 
       routes.MapRoute(
+        name: "Account",
+        url: "{culture}/Account/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "Account", action = "Index", id = UrlParameter.Optional },
+        constraints: new { culture = Culture.en.ToString() + "|" + Culture.fr.ToString() },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
+
+      routes.MapRoute(
+        name: "DefaultCaptcha",
+        url: "{culture}/DefaultCaptcha/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "DefaultCaptcha", action = "Index", id = UrlParameter.Optional },
+        constraints: new { culture = Culture.en.ToString() + "|" + Culture.fr.ToString() },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
+      
+      routes.MapRoute(
         name: "Default",
-        url: "{culture}/{controller}/{action}/{id}",
+        url: "{culture}/{action}/{id}",
         defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
         constraints: new { culture = Culture.en.ToString() + "|" + Culture.fr.ToString() },
         namespaces: new[] { "Nashotelru.Controllers" }
       ).RouteHandler = new MultiCultureMvcRouteHandler();
 
       routes.MapRoute(
+        name: "Accountru",
+        url: "Account/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "Account", action = "Index", id = UrlParameter.Optional },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
+
+      routes.MapRoute(
+        name: "DefaultCaptcharu",
+        url: "DefaultCaptcha/{action}/{id}",
+        defaults: new { culture = Culture.ru.ToString(), controller = "DefaultCaptcha", action = "Index", id = UrlParameter.Optional },
+        namespaces: new[] { "Nashotelru.Controllers" }
+      ).RouteHandler = new MultiCultureMvcRouteHandler();
+
+      routes.MapRoute(
         name: "Default1",
-        url: "{controller}/{action}/{id}",
+        url: "{action}/{id}",
         defaults: new { culture = Culture.ru.ToString(), controller = "Home", action = "Index", id = UrlParameter.Optional },
         namespaces: new[] { "Nashotelru.Controllers" }
       ).RouteHandler = new MultiCultureMvcRouteHandler();

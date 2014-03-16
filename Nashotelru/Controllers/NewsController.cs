@@ -8,11 +8,6 @@ namespace Nashotelru.Controllers
   public class NewsController : Controller
   {
     private NashotelDBContext db = new NashotelDBContext();
-    public ActionResult Index(int? id)
-    {
-      var q = db.News.Where(p => p.IsEnabled).OrderByDescending(p => p.Date).ThenByDescending(p => p.ID);
-      return View(q.ToPagedList(id ?? 1, 3));
-    }
 
     public ActionResult Det(int? id)
     {

@@ -1,11 +1,11 @@
-﻿@model Nashotelru.Models.HomeIndexViewModel
+﻿@model dynamic
 @{
   ViewBag.Title = "Контакты";
 }
 
 <div class="row">
   <div class="col-md-4 col-lg-3">
-    @Html.Partial("_Reservation", Model.book)
+    @Html.Partial("_Reservation", (object)Model.book)
   </div>
   <div class="col-md-8 col-lg-6 no-h1">
     @Html.Raw(Model.Page == null ? "" : Model.Page.Content)
@@ -114,7 +114,7 @@
 {
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 }
-@section Scripts
+@section Scripts1
 {
   <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
   <script type="text/javascript">

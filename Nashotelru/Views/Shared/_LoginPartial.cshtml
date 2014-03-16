@@ -10,7 +10,7 @@
       <li>
         @Html.ActionLink(linkText: "" + User.Identity.GetUserName() + "", actionName: "Params", controllerName: "Account", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
       </li>
-      <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+      <li><a href="javascript:document.getElementById('logoutForm').submit()">@Menu.LogOff</a></li>
     </ul>
   }
 }

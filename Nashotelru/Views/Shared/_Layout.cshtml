@@ -40,19 +40,29 @@
           @*@Html.ActionLink("НО", "Index", "Home", null, new { @class = "navbar-brand" })*@
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+          <ul class="navbar-nav nav">
             <li>@Html.ActionLink(Menu.SpecialOffers, "Index", "Home", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.OurRooms, "Index", "Rooms", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.Restaurant, "Index", "Restaurant", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.OurRooms, "Rooms", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.Restaurant, "Restaurant", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink(Menu.Contacts, "Contact", "Home", new { area = "" }, null)</li>
-            <li class="dropdown">
+            <li>
+            @if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != "ru") { 
+            <li>@Html.ActionLink("RU", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.ru, returnUrl = this.Request.RawUrl }, new { @class = "no-ln" })</li>
+            }
+            @if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != "en") {
+            <li>@Html.ActionLink("EN", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.en, returnUrl = this.Request.RawUrl }, new { @class = "no-ln" })</li>
+            }
+            @if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != "fr") {
+            <li>@Html.ActionLink("FR", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.fr, returnUrl = this.Request.RawUrl }, new { @class = "no-ln" })</li>
+            }
+            @*<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><small>LANGUAGE</small> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>@Html.ActionLink("RUSSIAN", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.ru, returnUrl = this.Request.RawUrl }, null)</li>
                 <li>@Html.ActionLink("ENGLISH", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.en, returnUrl = this.Request.RawUrl }, null)</li>
                 <li>@Html.ActionLink("FRENCH", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.fr, returnUrl = this.Request.RawUrl }, null)</li>
               </ul>
-            </li>
+            </li>*@
           </ul>
           @Html.Partial("_LoginPartial")
         </div>
@@ -81,18 +91,18 @@
         <div class="col-md-3 col-sm-6">
           <h5>@Menu.DM_Hotel</h5>
           <ul class="list-unstyled">
-            <li>@Html.ActionLink(Menu.DM_Rooms, "Index", "Rooms", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.DM_Restaurant, "Index", "Restaurant", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Rooms, "Rooms", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Restaurant, "Restaurant", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink(Menu.DM_Contacts, "Contact", "Home", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.DM_News, "Index", "News", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.DM_Responses, "Index", "Response", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_News, "News", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Responses, "Response", "Home", new { area = "" }, null)</li>
           </ul>
         </div>
         <div class="col-md-3 col-sm-6">
           <h5>@Menu.DM_Events</h5>
           <ul class="list-unstyled">
             <li><a href="#">@Menu.DM_SpecialOffers</a></li>
-            <li>@Html.ActionLink(Menu.DM_Activities, "Index", "Events", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.DM_Activities, "Events", "Home", new { area = "" }, null)</li>
           </ul>
         </div>
         <div class="col-md-3 col-sm-6">
@@ -114,5 +124,18 @@
       <p>&copy; @DateTime.Now.Year - Н<i>аш</i>ОTEL</p>
     </div>
   </footer>
+  <script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-20675544-1']);
+		  _gaq.push(['_setDomainName', 'www.nashotel.ru']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function () {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+  </script>
 </body>
+@RenderSection("scripts1", required: false)
 </html>

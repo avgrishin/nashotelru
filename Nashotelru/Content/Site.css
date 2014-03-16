@@ -178,3 +178,10 @@ a.list-group-item.active:focus {
   /*border-color: #398439;*/
   border-right: 5px solid #398439;
 }
+
+.no-ln {
+    padding-left:5px !important;
+    padding-right:5px !important;
+    font-style:italic;
+    color: #296432 !important;
+}

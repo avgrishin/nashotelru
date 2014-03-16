@@ -7,14 +7,7 @@ using System.Web.Mvc;
 
 namespace Nashotelru.Models
 {
-  public class HomeIndexViewModel
-  {
-    public Page Page { get; set; }
-    public IEnumerable<Nashotelru.Models.News> News { get; set; }
-
-    public BookingViewModel book;
-  }
-  public class NewsViewModel
+   public class NewsViewModel
   {
     public int ID { get; set; }
 
