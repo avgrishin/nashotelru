@@ -61,6 +61,24 @@ namespace Nashotelru.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OVERVIEW.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACTIVITIES.
+        /// </summary>
+        public static string Activities {
+            get {
+                return ResourceManager.GetString("Activities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 50, 11-ya Liniya, Vasilievsky Ostrov, St Petersburg.
         /// </summary>
         public static string Address {

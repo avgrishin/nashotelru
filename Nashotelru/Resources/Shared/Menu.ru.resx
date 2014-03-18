@@ -240,4 +240,10 @@
   <data name="Page_Title" xml:space="preserve">
     <value>Страницы</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>ОБ ОТЕЛЕ</value>
+  </data>
+  <data name="Activities" xml:space="preserve">
+    <value>МЕРОПРИЯТИЯ</value>
+  </data>
 </root>

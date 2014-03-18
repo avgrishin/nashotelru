@@ -41,10 +41,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav nav">
-            <li>@Html.ActionLink(Menu.SpecialOffers, "Index", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.About, "About", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink(Menu.OurRooms, "Rooms", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink(Menu.Restaurant, "Restaurant", "Home", new { area = "" }, null)</li>
-            <li>@Html.ActionLink(Menu.Contacts, "Contact", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.Activities, "Events", "Home", new { area = "" }, null)</li>
+            <li>@Html.ActionLink(Menu.SpecialOffers, "Index", "Home", new { area = "" }, null)</li>
             <li>
             @if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != "ru") { 
             <li>@Html.ActionLink("RU", "SetLanguage", "Home", new { area = "", lang = (int)Nashotelru.Culture.ru, returnUrl = this.Request.RawUrl }, new { @class = "no-ln" })</li>
