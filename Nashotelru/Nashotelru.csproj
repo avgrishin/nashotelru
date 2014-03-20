@@ -1138,6 +1138,7 @@
     <Content Include="Views\Shared\EditorTemplates\ckeditor.cshtml" />
     <Content Include="Views\Home\Career.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Account\ConfirmationFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

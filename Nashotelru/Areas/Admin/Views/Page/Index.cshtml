@@ -5,7 +5,7 @@
 }
 <h2>@Nashotelru.Resources.Shared.Menu.Page_Title</h2>
 <p>
-    @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Create, "Create")
+    @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Create, "Create", new { p = ViewBag.p })
 </p>
 <table class="table">
 
@@ -31,8 +31,8 @@
       @Html.DisplayFor(model => model[i].Name)
     </td>
     <td>
-      @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Edit, "Edit", new { id = Model[i].ID }) |
-      @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Delete, "Delete", new { id = Model[i].ID })
+      @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Edit, "Edit", new { id = Model[i].ID, p = ViewBag.p }) |
+      @Html.ActionLink(Nashotelru.Resources.Shared.Menu.Delete, "Delete", new { id = Model[i].ID, p = ViewBag.p })
     </td>
   </tr>
 }
