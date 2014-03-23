@@ -5,15 +5,14 @@ namespace Nashotelru.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Nashotelru.Models.NashotelDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Nashotelru.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Nashotelru.Models.NashotelDBContext";
         }
 
-        protected override void Seed(Nashotelru.Models.NashotelDBContext context)
+        protected override void Seed(Nashotelru.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

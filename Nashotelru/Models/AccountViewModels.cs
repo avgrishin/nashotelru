@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Nashotelru.Models
 {
+  public class ExternalLoginListViewModel
+  {
+    public string ReturnUrl { get; set; }
+  }
   public class ExternalLoginConfirmationViewModel
   {
     [Required]
@@ -53,7 +57,7 @@ namespace Nashotelru.Models
   {
     [Required(ErrorMessageResourceName = "YouMustSpecifyUserName", ErrorMessageResourceType = typeof(Resources.Account.Account))]
     [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
-    public string UserName { get; set; }
+    public string Email { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
@@ -67,8 +71,10 @@ namespace Nashotelru.Models
   public class RegisterViewModel
   {
     [Required]
+    [EmailAddress]
     [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
-    public string UserName { get; set; }
+    [DataType(DataType.EmailAddress)]
+    public string Email { get; set; }
 
     [Required]
     [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов.", MinimumLength = 6)]
@@ -80,36 +86,66 @@ namespace Nashotelru.Models
     [Display(Name = "Подтверждение", Prompt = "Подтверждение")]
     [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
     public string ConfirmPassword { get; set; }
-
-    [Required]
-    [StringLength(200)]
-    [Display(Name = "Email", Prompt = "Введите Ваш Email")]
-    [DataType(DataType.EmailAddress)]
-    public string EMail { get; set; }
   }
 
-  public class RemindViewModel
+  public class ForgotViewModel
   {
     [Required]
-    [Display(Name = "Логин или Email", Prompt = "Введите Ваш Email или Логин")]
-    public string UserName { get; set; }
+    [Display(Name = "Email")]
+    public string Email { get; set; }
   }
 
-  public class RemindConfirmViewModel
+  public class ForgotPasswordViewModel
   {
     [Required]
-    [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов.", MinimumLength = 6)]
+    [EmailAddress]
+    [Display(Name = "Email")]
+    public string Email { get; set; }
+  }
+
+  public class ResetPasswordViewModel
+  {
+    [Required]
+    [EmailAddress]
+    [Display(Name = "Email")]
+    public string Email { get; set; }
+
+    [Required]
+    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
     [DataType(DataType.Password)]
-    [Display(Name = "Новый пароль", Prompt = "Новый пароль")]
+    [Display(Name = "Password")]
     public string Password { get; set; }
 
     [DataType(DataType.Password)]
-    [Display(Name = "Подтверждение", Prompt = "Подтверждение пароля")]
-    [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
+    [Display(Name = "Confirm password")]
+    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
 
-    [Required]
-    public string ReminderToken { get; set; }
+    public string Code { get; set; }
   }
+
+  //public class RemindViewModel
+  //{
+  //  [Required]
+  //  [Display(Name = "Логин или Email", Prompt = "Введите Ваш Email или Логин")]
+  //  public string UserName { get; set; }
+  //}
+
+  //public class RemindConfirmViewModel
+  //{
+  //  [Required]
+  //  [StringLength(100, ErrorMessage = "{0} должен быть не короче {2} символов.", MinimumLength = 6)]
+  //  [DataType(DataType.Password)]
+  //  [Display(Name = "Новый пароль", Prompt = "Новый пароль")]
+  //  public string Password { get; set; }
+
+  //  [DataType(DataType.Password)]
+  //  [Display(Name = "Подтверждение", Prompt = "Подтверждение пароля")]
+  //  [Compare("Password", ErrorMessage = "Введенные пароли не совпадают.")]
+  //  public string ConfirmPassword { get; set; }
+
+  //  [Required]
+  //  public string ReminderToken { get; set; }
+  //}
 
 }

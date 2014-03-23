@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Nashotelru.Models;
 using System.Data.Entity;
@@ -18,35 +18,56 @@ namespace Nashotelru.Controllers
   [Authorize]
   public class AccountController : Controller
   {
+    //public AccountController()
+    //  : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+    //{
+    //  (UserManager.UserValidator as UserValidator<ApplicationUser>).AllowOnlyAlphanumericUserNames = false;
+
+    //  var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+
+    //  if (!roleManager.RoleExists("admin"))
+    //  {
+    //    var role = new IdentityRole();
+    //    role.Name = "admin";
+    //    roleManager.CreateAsync(role);
+    //  }
+    //  var user = UserManager.FindByName("avg1605");
+    //  if (user != null)
+    //  {
+    //    if (!UserManager.IsInRole(user.Id, "admin"))
+    //    {
+    //      UserManager.AddToRole(user.Id, "admin");
+    //    }
+    //  }
+    //}
+
+    //public AccountController(UserManager<ApplicationUser> userManager)
+    //{
+    //  UserManager = userManager;
+    //}
+
+    //public UserManager<ApplicationUser> UserManager { get; private set; }
     public AccountController()
-      : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
     {
-      (UserManager.UserValidator as UserValidator<ApplicationUser>).AllowOnlyAlphanumericUserNames = false;
-
-      var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-      if (!roleManager.RoleExists("admin"))
-      {
-        var role = new IdentityRole();
-        role.Name = "admin";
-        roleManager.CreateAsync(role);
-      }
-      var user = UserManager.FindByName("avg1605");
-      if (user != null)
-      {
-        if (!UserManager.IsInRole(user.Id, "admin"))
-        {
-          UserManager.AddToRole(user.Id, "admin");
-        }
-      }
     }
 
-    public AccountController(UserManager<ApplicationUser> userManager)
+    public AccountController(ApplicationUserManager userManager)
     {
       UserManager = userManager;
     }
 
-    public UserManager<ApplicationUser> UserManager { get; private set; }
+    private ApplicationUserManager _userManager;
+    public ApplicationUserManager UserManager
+    {
+      get
+      {
+        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+      }
+      private set
+      {
+        _userManager = value;
+      }
+    }
 
     //
     // GET: /Account/Login
@@ -57,6 +78,19 @@ namespace Nashotelru.Controllers
       return View();
     }
 
+    private SignInHelper _helper;
+
+    private SignInHelper SignInHelper
+    {
+      get
+      {
+        if (_helper == null)
+        {
+          _helper = new SignInHelper(UserManager, AuthenticationManager);
+        }
+        return _helper;
+      }
+    }
     //
     // POST: /Account/Login
     [HttpPost]
@@ -64,110 +98,223 @@ namespace Nashotelru.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
     {
-      if (ModelState.IsValid)
+      if (!ModelState.IsValid)
       {
-        var user = await UserManager.FindAsync(model.UserName, model.Password);
-        if (user != null && user.NoUserInfo != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
-        {
-          await SignInAsync(user, model.RememberMe);
+        return View(model);
+      }
+
+      // This doen't count login failures towards lockout only two factor authentication
+      // To enable password failures to trigger lockout, change to shouldLockout: true
+      var result = await SignInHelper.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+      switch (result)
+      {
+        case SignInStatus.Success:
           return RedirectToLocal(returnUrl);
-        }
-        else
-        {
-          ModelState.AddModelError("", user == null ? "Ошибка авторизации. Проверьте правильность указания Логина и Пароля." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации.");
-        }
+        case SignInStatus.LockedOut:
+          return View("Lockout");
+        case SignInStatus.RequiresTwoFactorAuthentication:
+          return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+        case SignInStatus.Failure:
+        default:
+          ModelState.AddModelError("", "Invalid login attempt.");
+          return View(model);
       }
-      // If we got this far, something failed, redisplay form
-      return View(model);
+
+      //if (ModelState.IsValid)
+      //{
+      //  var user = await UserManager.FindAsync(model.UserName, model.Password);
+      //  if (user != null && user.NoUserInfo != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
+      //  {
+      //    await SignInAsync(user, model.RememberMe);
+      //    return RedirectToLocal(returnUrl);
+      //  }
+      //  else
+      //  {
+      //    ModelState.AddModelError("", user == null ? "Ошибка авторизации. Проверьте правильность указания Логина и Пароля." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации.");
+      //  }
+      //}
+      //// If we got this far, something failed, redisplay form
+      //return View(model);
     }
 
+    //
+    // GET: /Account/ForgotPassword
     [AllowAnonymous]
-    public ActionResult Remind(string returnUrl)
-    {
-      ViewBag.ReturnUrl = returnUrl;
-      return View();
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    [ValidateAntiForgeryToken]
-    public async Task<ActionResult> Remind(RemindViewModel model, string returnUrl)
-    {
-      if (ModelState.IsValid)
-      {
-        ApplicationDbContext context = new ApplicationDbContext();
-        ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.UserName);
-        if (user != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
-        {
-          user.NoUserInfo.ReminderToken = Nashotelru.Helpers.ShortGuid.NewGuid();
-          user.NoUserInfo.ReminderDT = DateTime.Now;
-          DbSet<ApplicationUser> dbSet = context.Set<ApplicationUser>();
-          dbSet.Attach(user);
-          context.Entry(user).State = EntityState.Modified;
-          await context.SaveChangesAsync();
-
-          dynamic email = new Email("RemindEmail");
-          email.To = user.NoUserInfo.EMail;
-          email.From = "NashOTEL <nashotel@nm.ru>";
-          email.UserName = user.UserName;
-          email.ReminderToken = user.NoUserInfo.ReminderToken;
-          await email.SendAsync();
-          return RedirectToAction("RemindSent");
-        }
-        else
-        {
-          ModelState.AddModelError("", user == null ? "Ошибка. Проверьте правильность указания Логина и Email." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации. Проверьте правильность указания Логина и Email.");
-        }
-      }
-      // If we got this far, something failed, redisplay form
-      return View(model);
-    }
-
-    [AllowAnonymous]
-    public ActionResult RemindSent()
+    public ActionResult ForgotPassword()
     {
       return View();
     }
 
-    [AllowAnonymous]
-    public ActionResult RemindConfirm(string Id)
-    {
-      ApplicationDbContext context = new ApplicationDbContext();
-      ApplicationUser user = context.Users.FirstOrDefault(u => u.NoUserInfo.ReminderToken == Id);
-      if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
-      {
-        return View(new RemindConfirmViewModel { ReminderToken = Id });
-      }
-      return View("RemindFailure");
-    }
-
+    //
+    // POST: /Account/ForgotPassword
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> RemindConfirm(RemindConfirmViewModel model)
+    public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
     {
       if (ModelState.IsValid)
       {
-        ApplicationDbContext context = new ApplicationDbContext();
-        ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ReminderToken == model.ReminderToken);
-        if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
+        var user = await UserManager.FindByNameAsync(model.Email);
+        if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
         {
-          await UserManager.RemovePasswordAsync(user.Id);
-          var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
-          await SignInAsync(user, isPersistent: false);
-          if (result.Succeeded)
-          {
-            return RedirectToAction("Params", new { Message = "Пароль успешно изменен." });
-          }
-          else
-          {
-            AddErrors(result);
-          }
+          // Don't reveal that the user does not exist or is not confirmed
+          return View("ForgotPasswordConfirmation");
         }
+
+        var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+        var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+        //ViewBag.Link = callbackUrl;
+        dynamic email = new Email("RemindEmail");
+        email.To = user.Email;
+        email.From = "NashOTEL <nashotel@nm.ru>";
+        email.UserName = user.UserName;
+        email.callbackUrl = callbackUrl;
+        await email.SendAsync();
+        return View("ForgotPasswordConfirmation");
       }
+
       // If we got this far, something failed, redisplay form
       return View(model);
     }
+
+    //
+    // GET: /Account/ForgotPasswordConfirmation
+    [AllowAnonymous]
+    public ActionResult ForgotPasswordConfirmation()
+    {
+      return View();
+    }
+
+    //
+    // GET: /Account/ResetPassword
+    [AllowAnonymous]
+    public ActionResult ResetPassword(string code)
+    {
+      return code == null ? View("Error") : View();
+    }
+
+    //
+    // POST: /Account/ResetPassword
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View(model);
+      }
+      var user = await UserManager.FindByNameAsync(model.Email);
+      if (user == null)
+      {
+        // Don't reveal that the user does not exist
+        return RedirectToAction("ResetPasswordConfirmation", "Account");
+      }
+      var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+      if (result.Succeeded)
+      {
+        return RedirectToAction("ResetPasswordConfirmation", "Account");
+      }
+      AddErrors(result);
+      return View();
+    }
+
+    //
+    // GET: /Account/ResetPasswordConfirmation
+    [AllowAnonymous]
+    public ActionResult ResetPasswordConfirmation()
+    {
+      return View();
+    }
+
+    //[AllowAnonymous]
+    //public ActionResult Remind(string returnUrl)
+    //{
+    //  ViewBag.ReturnUrl = returnUrl;
+    //  return View();
+    //}
+
+    //[HttpPost]
+    //[AllowAnonymous]
+    //[ValidateAntiForgeryToken]
+    //public async Task<ActionResult> Remind(RemindViewModel model, string returnUrl)
+    //{
+    //  if (ModelState.IsValid)
+    //  {
+    //    ApplicationDbContext context = new ApplicationDbContext();
+    //    ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == model.UserName || u.NoUserInfo.EMail == model.UserName);
+    //    if (user != null && user.NoUserInfo.IsConfirmed && !user.NoUserInfo.IsLocked)
+    //    {
+    //      user.NoUserInfo.ReminderToken = Nashotelru.Helpers.ShortGuid.NewGuid();
+    //      user.NoUserInfo.ReminderDT = DateTime.Now;
+    //      DbSet<ApplicationUser> dbSet = context.Set<ApplicationUser>();
+    //      dbSet.Attach(user);
+    //      context.Entry(user).State = EntityState.Modified;
+    //      await context.SaveChangesAsync();
+
+    //      dynamic email = new Email("RemindEmail");
+    //      email.To = user.NoUserInfo.EMail;
+    //      email.From = "NashOTEL <nashotel@nm.ru>";
+    //      email.UserName = user.UserName;
+    //      email.ReminderToken = user.NoUserInfo.ReminderToken;
+    //      await email.SendAsync();
+    //      return RedirectToAction("RemindSent");
+    //    }
+    //    else
+    //    {
+    //      ModelState.AddModelError("", user == null ? "Ошибка. Проверьте правильность указания Логина и Email." : user.NoUserInfo.IsLocked ? "Ваш логин заблокирован" : !user.NoUserInfo.IsConfirmed ? "Ваш email не подтвержден" : "Ошибка авторизации. Проверьте правильность указания Логина и Email.");
+    //    }
+    //  }
+    //  // If we got this far, something failed, redisplay form
+    //  return View(model);
+    //}
+
+    //[AllowAnonymous]
+    //public ActionResult RemindSent()
+    //{
+    //  return View();
+    //}
+
+    //[AllowAnonymous]
+    //public ActionResult RemindConfirm(string Id)
+    //{
+    //  ApplicationDbContext context = new ApplicationDbContext();
+    //  ApplicationUser user = context.Users.FirstOrDefault(u => u.NoUserInfo.ReminderToken == Id);
+    //  if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
+    //  {
+    //    return View(new RemindConfirmViewModel { ReminderToken = Id });
+    //  }
+    //  return View("RemindFailure");
+    //}
+
+    //[HttpPost]
+    //[AllowAnonymous]
+    //[ValidateAntiForgeryToken]
+    //public async Task<ActionResult> RemindConfirm(RemindConfirmViewModel model)
+    //{
+    //  if (ModelState.IsValid)
+    //  {
+    //    ApplicationDbContext context = new ApplicationDbContext();
+    //    ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ReminderToken == model.ReminderToken);
+    //    if (user != null && user.NoUserInfo.IsConfirmed && user.NoUserInfo.ReminderDT.HasValue && user.NoUserInfo.ReminderDT.Value.AddDays(2) > DateTime.Now)
+    //    {
+    //      await UserManager.RemovePasswordAsync(user.Id);
+    //      var result = await UserManager.AddPasswordAsync(user.Id, model.Password);
+    //      await SignInAsync(user, isPersistent: false);
+    //      if (result.Succeeded)
+    //      {
+    //        return RedirectToAction("Params", new { Message = "Пароль успешно изменен." });
+    //      }
+    //      else
+    //      {
+    //        AddErrors(result);
+    //      }
+    //    }
+    //  }
+    //  // If we got this far, something failed, redisplay form
+    //  return View(model);
+    //}
 
     //
     // GET: /Account/Register
@@ -186,61 +333,106 @@ namespace Nashotelru.Controllers
     {
       if (ModelState.IsValid)
       {
-        ApplicationDbContext context = new ApplicationDbContext();
-        if (context.Users.SingleOrDefault(u => u.NoUserInfo.EMail == model.EMail) == null)
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var result = await UserManager.CreateAsync(user, model.Password);
+        if (result.Succeeded)
         {
-          var user = new ApplicationUser() { UserName = model.UserName };
-          user.NoUserInfo = new NoUserInfo { EMail = model.EMail, IsLocked = false, ConfirmationToken = Nashotelru.Helpers.ShortGuid.NewGuid(), IsConfirmed = false };
+          var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+          var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+          //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+          //ViewBag.Link = callbackUrl;
+          
+          dynamic email = new Email("RegEmail");
+          email.To = model.Email;
+          email.From = "NashOTEL <nashotel@nm.ru>";
+          email.UserName = model.Email;
+          email.callbackUrl = callbackUrl;
+          await email.SendAsync();
+          ViewBag.EMail = model.Email;
+          return View("Register2");
 
-          var result = await UserManager.CreateAsync(user, model.Password);
-          if (result.Succeeded)
-          {
-            dynamic email = new Email("RegEmail");
-            email.To = model.EMail;
-            email.From = "NashOTEL <nashotel@nm.ru>";
-            email.UserName = model.UserName;
-            email.ConfirmationToken = user.NoUserInfo.ConfirmationToken;
-            await email.SendAsync();
-            ViewBag.EMail = model.EMail;
-            return View("Register2");
-          }
-          else
-          {
-            AddErrors(result);
-          }
+          //return View("DisplayEmail");
         }
-        else
-        {
-          ModelState.AddModelError("", "Пользователь с таким EMail уже существует.");
-        }
+        AddErrors(result);
       }
+
       // If we got this far, something failed, redisplay form
       return View(model);
+      //if (ModelState.IsValid)
+      //{
+      //  ApplicationDbContext context = new ApplicationDbContext();
+      //  if (context.Users.SingleOrDefault(u => u.NoUserInfo.EMail == model.EMail) == null)
+      //  {
+      //    var user = new ApplicationUser() { UserName = model.UserName };
+      //    user.NoUserInfo = new NoUserInfo { EMail = model.EMail, IsLocked = false, ConfirmationToken = Nashotelru.Helpers.ShortGuid.NewGuid(), IsConfirmed = false };
+
+      //    var result = await UserManager.CreateAsync(user, model.Password);
+      //    if (result.Succeeded)
+      //    {
+      //      dynamic email = new Email("RegEmail");
+      //      email.To = model.EMail;
+      //      email.From = "NashOTEL <nashotel@nm.ru>";
+      //      email.UserName = model.UserName;
+      //      email.ConfirmationToken = user.NoUserInfo.ConfirmationToken;
+      //      await email.SendAsync();
+      //      ViewBag.EMail = model.EMail;
+      //      return View("Register2");
+      //    }
+      //    else
+      //    {
+      //      AddErrors(result);
+      //    }
+      //  }
+      //  else
+      //  {
+      //    ModelState.AddModelError("", "Пользователь с таким EMail уже существует.");
+      //  }
+      //}
+      //// If we got this far, something failed, redisplay form
+      //return View(model);
     }
 
+    //
+    // GET: /Account/ConfirmEmail
     [AllowAnonymous]
-    public async Task<ActionResult> RegisterConfirmation(string Id)
+    public async Task<ActionResult> ConfirmEmail(string userId, string code)
     {
-      ApplicationDbContext context = new ApplicationDbContext();
-      ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ConfirmationToken == Id);
-      if (user != null && !user.NoUserInfo.IsConfirmed)
+      if (userId == null || code == null)
       {
-        user.NoUserInfo.IsConfirmed = true;
-        DbSet<ApplicationUser> dbSet = context.Set<ApplicationUser>();
-        dbSet.Attach(user);
-        context.Entry(user).State = EntityState.Modified;
-        await context.SaveChangesAsync();
-        //await SignInAsync(user, isPersistent: false);
-        return RedirectToAction("Params", new { Message = "Поздравляем! Вы успешно завершили регистрацию." });
+        return View("Error");
       }
-      return RedirectToAction("ConfirmationFailure");
-    }
-
-    [AllowAnonymous]
-    public ActionResult ConfirmationFailure()
-    {
+      var result = await UserManager.ConfirmEmailAsync(userId, code);
+      if (result.Succeeded)
+      {
+        return View("ConfirmEmail");
+      }
+      AddErrors(result);
       return View();
     }
+
+    //[AllowAnonymous]
+    //public async Task<ActionResult> RegisterConfirmation(string Id)
+    //{
+    //  ApplicationDbContext context = new ApplicationDbContext();
+    //  ApplicationUser user = context.Users.SingleOrDefault(u => u.NoUserInfo.ConfirmationToken == Id);
+    //  if (user != null && !user.NoUserInfo.IsConfirmed)
+    //  {
+    //    user.NoUserInfo.IsConfirmed = true;
+    //    DbSet<ApplicationUser> dbSet = context.Set<ApplicationUser>();
+    //    dbSet.Attach(user);
+    //    context.Entry(user).State = EntityState.Modified;
+    //    await context.SaveChangesAsync();
+    //    //await SignInAsync(user, isPersistent: false);
+    //    return RedirectToAction("Params", new { Message = "Поздравляем! Вы успешно завершили регистрацию." });
+    //  }
+    //  return RedirectToAction("ConfirmationFailure");
+    //}
+
+    //[AllowAnonymous]
+    //public ActionResult ConfirmationFailure()
+    //{
+    //  return View();
+    //}
 
     //
     // POST: /Account/Disassociate

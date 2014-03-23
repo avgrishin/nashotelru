@@ -1,4 +1,4 @@
-﻿@model List<Nashotelru.Models.ApplicationUser>
+﻿@model List<Nashotelru.Models.UserRolesViewModel>
 @using System.Linq
 @{
   ViewBag.Title = "Администрирование";
@@ -22,8 +22,8 @@
         </dt>
         <dd>
           @Html.DisplayFor(model => item.UserName)
-          <br />@Html.DisplayFor(model => item.NoUserInfo.EMail)
-          <br />Роли: @Html.Raw(string.Join(",", item.Roles.Select(s => s.Role.Name)))
+          @*<br />@Html.DisplayFor(model => item.NoUserInfo.EMail)*@
+          <br />Роли: @Html.Raw(item.Roles)
         </dd>
       </dl>
 

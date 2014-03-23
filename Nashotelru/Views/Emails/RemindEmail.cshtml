@@ -11,7 +11,7 @@ Content-Type: text/html; charset=utf-8
   <br />
   <h2>Восстановление доступа к сайту</h2>
   <br />
-  Вы отправили запрос на восстановление доступа к личному кабинету на <a href="nashotel.ru">nashotel.ru</a>. Для смены пароля перейдите по следующей ссылке: @Html.ActionLink(Url.Action("RemindConfirm", "Account", new { id = ViewBag.ReminderToken }, "http"), "RemindConfirm", "Account", "http", null, "", new { id = ViewBag.ReminderToken }, new { target = "_blank" }).<br />
+  Вы отправили запрос на восстановление доступа к личному кабинету на <a href="nashotel.ru">nashotel.ru</a>. Для смены пароля перейдите по следующей <a href="@ViewBag.callbackUrl" target="_blank">ссылке</a>.<br />
   <br />
   Если Вы не отправляли запрос на восстановление пароля на <a href="nashotel.ru">nashotel.ru</a> и считаете это письмо ошибкой, просто игнорируйте данное сообщение.
 </body>

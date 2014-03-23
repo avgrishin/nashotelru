@@ -22,10 +22,10 @@
     <hr />
     @Html.ValidationSummary()
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.UserName)
-          @Html.ValidationMessageFor(m => m.UserName)
+            @Html.EditorFor(m => m.Email)
+          @Html.ValidationMessageFor(m => m.Email)
         </div>
     </div>
     <div class="form-group">
@@ -42,13 +42,6 @@
           @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </div>
     </div>
-      <div class="form-group">
-        @Html.LabelFor(m => m.EMail, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-          @Html.EditorFor(m => m.EMail)
-          @Html.ValidationMessageFor(m => m.EMail)
-        </div>
-      </div>
         <div class="form-group">
           <div class="col-md-offset-4 col-md-8">
             @captcha.RenderMarkup()
@@ -60,7 +53,6 @@
         </div>
     </div>
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 @captcha.RenderScript()

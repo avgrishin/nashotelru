@@ -87,4 +87,11 @@ namespace Nashotelru.Models
     [MaxLength(120)]
     public string Name { get; set; }
   }
+
+  public class UserRolesViewModel
+  {
+    [Display(ResourceType = typeof(Resources.Account.Account), Name = "LoginLabel", Prompt = "LoginLabel")]
+    public string UserName { get; set; }
+    public string Roles { get; set; }
+  }
 }
